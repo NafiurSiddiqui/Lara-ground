@@ -14,13 +14,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/posts', function () {
     return view('posts');
 });
 
-Route::get('/post', function () {
-    return view('post');
+Route::get('/posts/{post}', function ($slug) {
+
+    
+    $path = __DIR__. "/../resources/posts/{$slug}.html";
+
+    //always check the error case
+    if(!file_exists($path)) {
+        //die and dump
+        // dd('File does not exist');
+        //there is also ddd - DUMP, DIE, DEBUG
+        // ddd('File Does not Exist');
+        //abort(404)
+        return redirect('/'); //to the homepage
+    }
+
+    $post = file_get_contents($path);
+
+
+    return view('post', [
+        'post' => $post
+    ]);
 });

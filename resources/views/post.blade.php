@@ -10,7 +10,7 @@
     <body>
 
         <article>
-            <?php $post  ?>
+            <?= $post;  ?>
         </article>
 
         <a href="/posts">Go back</a>
