@@ -42,4 +42,4 @@ Route::get('/posts/{post}', function ($slug) {
     return view('post', [
         'post' => $post
     ]);
-});
+})->where('post', '[A-z_\-]+'); //This is how you can put constraints otherwise the {slug} can be anything.
