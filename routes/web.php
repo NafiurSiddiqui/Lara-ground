@@ -36,7 +36,9 @@ Route::get('/posts/{post}', function ($slug) {
         return redirect('/'); //to the homepage
     }
 
-    $post = file_get_contents($path);
+    //with caching we won't be running this expensive operation each time for a request
+
+    $post = cache()->remember('posts.{slug}', now()->addMinutes(20), fn () => file_get_contents($path));
 
 
     return view('post', [
