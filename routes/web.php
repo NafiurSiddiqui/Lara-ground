@@ -40,7 +40,6 @@ Route::get('/posts/{post}', function ($slug) {
 
     $post = cache()->remember('posts.{slug}', now()->addMinutes(20), fn () => file_get_contents($path));
 
-
     return view('post', [
         'post' => $post
     ]);
