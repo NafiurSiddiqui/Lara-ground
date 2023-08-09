@@ -17,7 +17,7 @@
             </ul>
         </nav>
         <h1>The New Revolutionary Platoform </h1>
-        <h2> A direct competitor of Adam's CMS. </h2>
+        <h2> CMS that revolutionized the modern world! </h2>
         <h3>None of Elonoir rugby or Marg Zuckerbeg stands a chance against this new revolution</h3>
     </body>
 
