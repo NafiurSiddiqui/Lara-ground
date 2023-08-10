@@ -14,10 +14,13 @@
 
         <article>
             <h1>
-                <?= $post->title; ?>
+                <a href="/posts/<?= $post->slug;?>">
+                    <?= $post->title; ?>
+                </a>
             </h1>
 
             <p>
+                <?= $post->excerpt; ?>
 
             </p>
         </article>
