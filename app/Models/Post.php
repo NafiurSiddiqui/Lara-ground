@@ -39,9 +39,9 @@ class Post
 
         //with caching we won't be running this expensive operation each time for a request
 
-        return cache()->remember("posts.{$slug}", 1200, fn () =>file_get_contents($path));
+        // return cache()->remember("posts.{$slug}", 1200, fn () =>file_get_contents($path));
 
-
+        return static::all()->firstWhere('slug', $slug);
 
     }
 
