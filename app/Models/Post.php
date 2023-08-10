@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\File;
 
 class Post
 {
+    
+    public function __construct(
+        public $title,
+        public $slug,
+        public $excerpt,
+        public $date,
+        public $body,
+    ) {
+       
+    }
+
     public static function find($slug)
     {
      

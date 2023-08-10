@@ -9,10 +9,17 @@
     </head>
 
     <body class="">
+
         <?php foreach ($posts as $post): ?>
 
         <article>
-            <?= $post; ?>
+            <h1>
+                <?= $post->title; ?>
+            </h1>
+
+            <p>
+
+            </p>
         </article>
         <hr>
 
