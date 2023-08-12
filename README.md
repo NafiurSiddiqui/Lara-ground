@@ -18,3 +18,4 @@
 -   collection
 -   Cache
 -   Architecture
+-   Blade
