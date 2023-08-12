@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-layout>
+    <article>
+        <h1>
+            {{ $post->title }}
+        </h1>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Post</title>
-    </head>
+        <p>
+            <!-- THIS IS HOW YOU PARSE HTML WITH BLADE -->
+            {!! $post->body !!}
+        </p>
+    
+    </article>
 
-    <body>
+    <a href="/posts">Go back</a>   
 
-        <article>
-
-            <h1>
-                <?= $post->title; ?>
-            </h1>
-
-            <p>
-                <?= $post->body;?>
-            </p>
-        </article>
-
-        <a href="/posts">Go back</a>
-    </body>
-
-</html>
+</x-layout>
