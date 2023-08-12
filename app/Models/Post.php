@@ -49,28 +49,25 @@ class Post
 
     public static function all()
     {
+        //TIPS: you might wanna use service providers to bootstrap all of the following logic here. Doesn't make sense to put all of this inside a model.
 
-        // $files = File::files(resource_path("posts/"));
+        return cache()->rememberForever('posts.all', function () {
+            //map over the document and get title, slug, excerpt, data and body
+            return collect(File::files(resource_path('posts')))
+            ->map(fn ($file) => YamlFrontMatter::parseFile($file))
+            ->map(fn ($document) =>
+                 new Post(
+                     $document->title,
+                     $document->slug,
+                     $document->excerpt,
+                     $document->date,
+                     $document->body()
+                 ))
+                 ->sortByDesc('date') ;
 
-     
-
-        // return array_map(function ($file) {
-        //     return $file->getContents();
-        // }, $files);
-        //get the files
-        $files = File::files(resource_path('posts'));
+        });
         
-        //map over the document and get title, slug, excerpt, data and body
-        return collect($files)
-        ->map(fn ($file) => YamlFrontMatter::parseFile($file))
-        ->map(fn ($document) =>
-             new Post(
-                 $document->title,
-                 $document->slug,
-                 $document->excerpt,
-                 $document->date,
-                 $document->body()
-             )) ;
+       
         // ddd($posts);
     
 
