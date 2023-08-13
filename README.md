@@ -19,3 +19,11 @@
 -   Cache
 -   Architecture
 -   Blade
+
+# DB config and files
+
+-   Create your usual sql db and run `php artisan migrate` to hook up the DB to laravel.
+-   use `ENV` files for storing sensitive information and configuration.
+-   `php artisan migrate:rollback` : This is to rollback to the previous migration.
+-   `... migrate:fresh`: Will drop the tables and re-create the tables. **NEVER** use it in production.
+-   Always change the `APP_ENV` to `production` before production.
