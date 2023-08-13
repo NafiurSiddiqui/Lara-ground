@@ -45,3 +45,10 @@
 -   `User::find(id<int>)` or `User::findOrFail(id<int>)` with id number, name etc, will show you the details of the user.
 -   `User::all()` returns all users info.
 -   `User::pluck(name<string>)` will return only the column mentioned.
+
+# Creating additional tables and so on
+
+-   `php artisan make:migration` - helps you with creating additonal tables
+-   `php artisan -help make:migration`- shows you the list of commands available to you.
+-   General rule of thumb, make sensible name for what the migration does. e.g - `... create_posts_table`
+-   Each time you make a migration, generates files right inside the [database](./database/migrations/) dir.
