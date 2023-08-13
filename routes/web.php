@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EloquentPost;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
@@ -60,19 +61,37 @@ Route::get('/', function () {
 });
 
 
+// Route::get('/posts', function () {
+
+//     return view('posts', [
+//     'posts' => Post::all()
+// ]);
+
+// });
+
+// ELOQUENT CLASS
 Route::get('/posts', function () {
 
     return view('posts', [
-    'posts' => Post::all()
+    'posts' => EloquentPost::all()
 ]);
 
 });
     
 
-Route::get('/posts/{post}', function ($slug) {
+// Route::get('/posts/{post}', function ($slug) {
+
+//     //find a post by its slug and pass it to the view called "post"
+//     return view('post', [
+//         'post' => Post::findOrFail($slug)
+//     ]);
+// });
+
+// ELOQUENT POST
+Route::get('/posts/{post}', function ($id) {
 
     //find a post by its slug and pass it to the view called "post"
     return view('post', [
-        'post' => Post::findOrFail($slug)
+        'post' => EloquentPost::findOrFail($id)
     ]);
 });

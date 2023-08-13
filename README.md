@@ -20,6 +20,10 @@
 -   Architecture
 -   Blade
 
+# Php Tinker
+
+-   Run `php artisan tinker` to have php code running inside your terminal.
+
 # DB config and files
 
 -   Create your usual sql db and run `php artisan migrate` to hook up the DB to laravel.
@@ -34,6 +38,12 @@
 -   is a fancy term for how Laravel's way of interacting with your DB table.
 -   Each of the DB table will have a corresponding Eloquent model.
 -   If you have user table it will correspond to the User Model and instances of user will go to what is known as `active pattern` ( records of USER object inside the DB).
+
+# Creating a default DB
+
+-   `php artisan migrate` will generate a default db.
+-   Any additional changes, like adding columns, you can go to [database]('./database/migrations) and update changes.
+-   afterwards, run `... migrate:fresh` to update the columns in your db.
 
 # Creating User ( DEVELOPMENT )
 
