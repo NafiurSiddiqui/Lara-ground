@@ -27,3 +27,21 @@
 -   `php artisan migrate:rollback` : This is to rollback to the previous migration.
 -   `... migrate:fresh`: Will drop the tables and re-create the tables. **NEVER** use it in production.
 -   Always change the `APP_ENV` to `production` before production.
+
+# ELOQUENT
+
+-   This is Laravel's ORM - ( Object Relational Mapper)
+-   is a fancy term for how Laravel's way of interacting with your DB table.
+-   Each of the DB table will have a corresponding Eloquent model.
+-   If you have user table it will correspond to the User Model and instances of user will go to what is known as `active pattern` ( records of USER object inside the DB).
+
+# Creating User ( DEVELOPMENT )
+
+-   run `php artisan tinker`
+-   `$user = new App\Models\User` to create an user instance.
+-   `$user->name = <Name>`, `$user->email = <email>`, `$user->password = bcrypt(<pass>)` to fill out the necessary user fields.
+-   `$user->save()` to save it to the DB.
+-   run `$user` and you shall see the user information.
+-   `User::find(id<int>)` or `User::findOrFail(id<int>)` with id number, name etc, will show you the details of the user.
+-   `User::all()` returns all users info.
+-   `User::pluck(name<string>)` will return only the column mentioned.
