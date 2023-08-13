@@ -19,37 +19,11 @@ class Post
     ) {
        
     }
-
-    public static function find($slug)
-    {
-     
-        //find a post by its slug and pass it to the view called "post"
-        //There are GLOBAL VARIABLES that we can use to build up the path
-        //some of them directly includes the folder name
-        // app_path()
-   
-       
-        //always check the error case
-        if(!file_exists($path = resource_path("/posts/{$slug}.html"))) {
-       
-            // return redirect('/'); ////Note that redirecting is the job of controller not here.
-
-            throw new ModelNotFoundException();
-        }
-
-        //with caching we won't be running this expensive operation each time for a request
-
-        // return cache()->remember("posts.{$slug}", 1200, fn () =>file_get_contents($path));
-
-        return static::all()->firstWhere('slug', $slug);
-
-    }
-
-
-
     public static function all()
     {
         //TIPS: you might wanna use service providers to bootstrap all of the following logic here. Doesn't make sense to put all of this inside a model.
+
+        //with caching we won't be running this expensive operation each time for a request
 
         return cache()->rememberForever('posts.all', function () {
             //map over the document and get title, slug, excerpt, data and body
@@ -73,5 +47,42 @@ class Post
 
 
         
+    }
+
+    
+    public static function find($slug)
+    {
+     
+        //find a post by its slug and pass it to the view called "post"
+        //There are GLOBAL VARIABLES that we can use to build up the path
+        //some of them directly includes the folder name
+        // app_path()
+   
+        //always check the error case
+        // if(!file_exists(resource_path("/posts/{$slug}.html"))) {
+       
+        //     // return redirect('/'); ////Note that redirecting is the job of controller not here.
+
+        //     throw new ModelNotFoundException();
+        // }
+
+        return static::all()->firstWhere('slug', $slug);
+
+
+    }
+
+    public static function findOrFail($slug)
+    {
+     
+    
+        $post = static::all()->firstWhere('slug', $slug);
+
+        if(!$post) {
+            throw new ModelNotFoundException();
+        }
+     
+
+        return $post;
+
     }
 }
