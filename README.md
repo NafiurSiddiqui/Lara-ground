@@ -50,5 +50,10 @@
 
 -   `php artisan make:migration` - helps you with creating additonal tables
 -   `php artisan -help make:migration`- shows you the list of commands available to you.
--   General rule of thumb, make sensible name for what the migration does. e.g - `... create_posts_table`
+-   General rule of thumb, make sensible name for what the migration does. e.g - `... create_posts_table`. SO far looks like the name of the table gotta be plural?
 -   Each time you make a migration, generates files right inside the [database](./database/migrations/) dir.
+-   Make sure to run `.. migrate` to successfully update the DB.
+
+# Creating Model
+
+-   After migrating the new table, run `... make:model <name>` in this case `Post` and stick with singularity class name. Not `Posts`.
