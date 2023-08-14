@@ -12,6 +12,10 @@
                 </a>
             </h1>
 
+            <div>
+                Category: <a href="#">{{ $post->category->name }}</a>
+            </div>
+
             <p>
                 {{ $post->excerpt }}
             </p>

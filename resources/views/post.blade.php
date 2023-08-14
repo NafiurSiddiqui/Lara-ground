@@ -4,6 +4,12 @@
             {{ $post->title }}
         </h1>
 
+        
+            <div>
+                Category: <a href="#">{{ $post->category->name }}</a>
+            </div>
+
+
         <p>
             <!-- THIS IS HOW YOU PARSE HTML WITH BLADE -->
             {!! $post->body !!}
