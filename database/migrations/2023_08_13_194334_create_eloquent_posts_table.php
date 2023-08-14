@@ -12,9 +12,12 @@ return new class extends Migration {
     {
         Schema::create('eloquent_posts', function (Blueprint $table) {
             $table->id();
+
+            $table->tinyText('username');
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
+            $table->text('slug')->unique();
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
 
