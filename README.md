@@ -84,3 +84,8 @@
 -   seeding fills up the database
 -   `php artisan db:seed` seeds the db.
 -   Next time you need to update DB run `php artisan migrate:fresh --seed` to drop and repopulate the tables.
+-   see how `truncate()` inside the.
+
+## Factory
+
+-   `Factory()` creates and saves new data to db.
