@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('eloquent_posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->string('title');
             $table->text('excerpt');

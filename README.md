@@ -71,3 +71,16 @@
 # shortcut to migrate and model
 
 -   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with
+
+# Clockwork and N+1 problem
+
+-   `\Illuminate\Support\Facades\DB:listen($callback)` - you can listen to any incoming queries.
+
+# DB Seeding
+
+## Manual Seeding
+
+-   you will find the seeder inside `/database/seeders`.
+-   seeding fills up the database
+-   `php artisan db:seed` seeds the db.
+-   Next time you need to update DB run `php artisan migrate:fresh --seed` to drop and repopulate the tables.

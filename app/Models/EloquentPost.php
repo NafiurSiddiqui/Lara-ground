@@ -19,4 +19,13 @@ class EloquentPost extends Model
         //you access this as property not callable way.
         //e.g - $post->catogory;
     }
+
+    public function user()
+    {
+      
+        return $this->belongsTo(User::class); // EloquentCLass->user
+        
+    }
+
+
 }

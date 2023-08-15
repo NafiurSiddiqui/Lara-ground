@@ -4,6 +4,7 @@ use App\Models\Category;
 use App\Models\EloquentPost;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
@@ -71,14 +72,29 @@ Route::get('/', function () {
 // });
 
 // ELOQUENT CLASS
-Route::get('/posts', function () {
+// Route::get('/posts', function () {
+//     return view('posts', [
+//     'posts' => EloquentPost::all()
+// ]);
 
+// });
+
+
+Route::get('/posts', function () {
+    //the following logs for how many times we requested for the sql query.
+    // DB::listen(function ($query) {
+    //     logger($query->sql);
+    // });
+    //*It is better to use Clockwork for this debugging. You have it installed in your edge.
+    
     return view('posts', [
-    'posts' => EloquentPost::all()
+    'posts' => EloquentPost::with('category')->get()
 ]);
 
 });
     
+
+//SINGLE POST
 
 // Route::get('/posts/{post}', function ($slug) {
 
@@ -87,8 +103,6 @@ Route::get('/posts', function () {
 //         'post' => Post::findOrFail($slug)
 //     ]);
 // });
-
-
 
 
 //for one post
@@ -104,7 +118,7 @@ Route::get('/posts/{id}', function (EloquentPost $id) {
 
 Route::get('/categories/{category:slug}', function (Category $category) {
 
-    return view([
-        'posts' => $category->slug
+    return view('posts', [
+        'posts' => $category->posts
     ]);
 });
