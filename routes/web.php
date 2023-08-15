@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\EloquentPost;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -87,12 +88,23 @@ Route::get('/posts', function () {
 //     ]);
 // });
 
-// ELOQUENT POST
+
+
+
+//for one post
 Route::get('/posts/{id}', function (EloquentPost $id) {
 
     //find a post by its slug and pass it to the view called "post"
     return view('post', [
         // 'post' => EloquentPost::findOrFail($id) //you can do this as well but remove EloquentPost type from the arg
         'post' => $id
+    ]);
+});
+
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+
+    return view([
+        'posts' => $category->slug
     ]);
 });
