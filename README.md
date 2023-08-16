@@ -89,3 +89,9 @@
 ## Factory
 
 -   `Factory()` creates and saves new data to db.
+-   A user factory has a corresponding model. Every eloquent model you create will have the trait,factory ,`hasFactory`. This allows you to call the factory and quickly create and persist a class data to the db. The attributes will be declared inside the class.
+-   Wherever you need to use the factory, you need to make sure the corresponding factory class exist. For instance, if a `EloquentPost` class does not have a corresponding factory class, you create one by runnng `php artisan make:factory`.
+
+# Commands
+
+-   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).

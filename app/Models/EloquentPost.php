@@ -12,6 +12,7 @@ class EloquentPost extends Model
     // protected $fillable = ['title', 'slug', 'excerpt','body', 'category_id'];
     protected $guarded = [];
 
+    //a post has category
     public function category()
     {
         //some methods: hasOne, hasMany, belongsTo,belongsToMany
@@ -20,6 +21,7 @@ class EloquentPost extends Model
         //e.g - $post->catogory;
     }
 
+    //post has user
     public function user()
     {
       
