@@ -22,7 +22,7 @@ class EloquentPostFactory extends Factory
             "title" => $this->faker->sentence,
             "slug" => $this->faker->slug,
             "excerpt" => $this->faker->sentence,
-            "body" => $this->faker->sentences,
+            "body" => $this->faker->paragraph,
             "category_id" => Category::factory(), //creates category and grabs the id
             "user_id" => User::factory() //creates user and grabs the id
         ];
