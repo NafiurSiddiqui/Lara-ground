@@ -70,11 +70,12 @@
 
 # shortcut to migrate and model
 
--   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with
+-   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with `php artisan -help`
 
 # Clockwork and N+1 problem
 
 -   `\Illuminate\Support\Facades\DB:listen($callback)` - you can listen to any incoming queries.
+-   you need to pass the name of the request you are looking for in order to stop sending request for each and every name inside a loop. This is what N + 1 problem refers to.
 
 # DB Seeding
 

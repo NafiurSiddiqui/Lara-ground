@@ -88,7 +88,8 @@ Route::get('/posts', function () {
     //*It is better to use Clockwork for this debugging. You have it installed in your edge.
     
     return view('posts', [
-    'posts' => EloquentPost::latest()->with('category')->get()
+    'posts' => EloquentPost::latest()->with('category', 'author')->get()
+    //The args is passed to solve n + 1 problems.
 ]);
 
 });
