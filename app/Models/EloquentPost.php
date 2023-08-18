@@ -22,10 +22,17 @@ class EloquentPost extends Model
     }
 
     //post has user
-    public function user()
+    // public function user()
+    // {
+      
+    //     return $this->belongsTo(User::class); // EloquentCLass->user
+        
+    // }
+    
+    public function author()
     {
       
-        return $this->belongsTo(User::class); // EloquentCLass->user
+        return $this->belongsTo(User::class, 'user_id'); // name is different than our function name, which won't match our DB column, Hence we the 'user_id' as second argument
         
     }
 
