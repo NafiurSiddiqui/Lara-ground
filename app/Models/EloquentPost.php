@@ -32,7 +32,7 @@ class EloquentPost extends Model
     public function author()
     {
       
-        return $this->belongsTo(User::class, 'user_id'); // name is different than our function name, which won't match our DB column, Hence we the 'user_id' as second argument
+        return $this->belongsTo(User::class, 'user_id'); // name is different than our function name, which won't match our DB column, Hence we the 'user_id' as second argument instead of author_id
         
     }
 
