@@ -89,8 +89,9 @@ Route::get('/posts', function () {
     //*It is better to use Clockwork for this debugging. You have it installed in your edge.
     
     return view('posts', [
-    'posts' => EloquentPost::latest()->with('category', 'author')->get()
+    // 'posts' => EloquentPost::latest()->with('category', 'author')->get()
     //The args is passed to solve n + 1 problems.
+    'posts' => EloquentPost::latest()->get()
 ]);
 
 });
@@ -121,9 +122,10 @@ Route::get('/posts/{id}', function (EloquentPost $id) {
 Route::get('/categories/{category:slug}', function (Category $category) {
 
     return view('posts', [
-        'posts' => $category->posts->load(['category', 'author'])
+        // 'posts' => $category->posts->load(['category', 'author'])
         //loading like this solves n + 1 problems. Without this we will again query for each post for each category, author, and so on.
         //if doing this everywhere does not make sense we can decalre it once in our Model class. Checkout EloquentPost's $with prop
+        'posts' => $category->posts
 
     ]);
 });
@@ -133,6 +135,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 Route::get('/authors/{author:username}', function (User $author) {
 
     return view('posts', [
-        'posts' => $author->posts->load(['category', 'author'])
+        // 'posts' => $author->posts->load(['category', 'author'])
+        'posts' => $author->posts
     ]);
 });
