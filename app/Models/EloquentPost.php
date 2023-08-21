@@ -16,13 +16,15 @@ class EloquentPost extends Model
     //a post has category
     public function category()
     {
+        
         //some methods: hasOne, hasMany, belongsTo,belongsToMany
         return $this->belongsTo(Category::class);
         //you access this as property not callable way.
         //e.g - $post->catogory;
     }
 
-    //post has user
+    //a post has user
+
     // public function user()
     // {
       
@@ -33,8 +35,11 @@ class EloquentPost extends Model
     public function author()
     {
       
-        return $this->belongsTo(User::class, 'user_id'); // name is different than our function name, which won't match our DB column, Hence we the 'user_id' as second argument instead of author_id
+        return $this->belongsTo(User::class, 'user_id');
         
+        // by deafult this function will look for author_id which we do not have.
+        // But the DB id name is different than our function name, which won't match our DB column, Hence we created the 'user_id' as second argument instead of author_id.
+
     }
 
 
