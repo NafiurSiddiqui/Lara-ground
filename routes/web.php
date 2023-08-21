@@ -91,7 +91,8 @@ Route::get('/posts', function () {
     return view('posts', [
     // 'posts' => EloquentPost::latest()->with('category', 'author')->get()
     //The args is passed to solve n + 1 problems.
-    'posts' => EloquentPost::latest()->get()
+    'posts' => EloquentPost::latest()->get(),
+    'categories'=> Category::all()
 ]);
 
 });
