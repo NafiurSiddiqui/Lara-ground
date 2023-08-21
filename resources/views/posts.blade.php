@@ -8,19 +8,21 @@
                 
             <x-post-featured :post="$posts[0]" />
            
-
-            <div class="lg:grid lg:grid-cols-2">
+            @if ($posts->count() > 1)
+                
+            <div class="lg:grid lg:grid-cols-6">
                 {{-- Note the skip method is only available if your data is inside a collection --}}
 
                 {{-- we do this to skip the first post of the collection which is only for featured post --}}
 
                @foreach ($posts->skip(1) as $post)
-
-                <x-post-card :post="$post" />
                    
+               <x-post-card :post="$post"  class="{{ $loop->iteration < 3 ? 'col-span-3' : 'col-span-2' }}" />
                @endforeach
-               
             </div>
+            
+            @endif
+         
 
             <div class="lg:grid lg:grid-cols-3">
               {{-- <x-post-card/>
