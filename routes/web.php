@@ -109,12 +109,12 @@ Route::get('/posts', function () {
 
 
 //for one post
-Route::get('/posts/{id}', function (EloquentPost $id) {
+Route::get('/posts/{post:slug}', function (EloquentPost $slug) {
 
     //find a post by its slug and pass it to the view called "post"
     return view('post', [
         // 'post' => EloquentPost::findOrFail($id) //you can do this as well but remove EloquentPost type from the arg
-        'post' => $id
+        'post' => $slug
     ]);
 });
 
