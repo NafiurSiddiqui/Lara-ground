@@ -101,3 +101,7 @@
 
 -   you define this once inside the model class as property. For instance checkout (EloquentPost)['/first-app/app/Models/EloquentPost.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.
 -   **NOTE** That if you ever needed to disable autoloading or eager loading you can do so by `Class::without(..args)->first()`. This will load the post without the specified relationship. So, if we had passed '_author_', '_category_' this would load the post without the author and _category_.
+
+# Dealing with static assets
+
+-   for the images. Put `/images/` instead of `./images`. Prolly this is due to how app visitors only get access to the `public` folder.
