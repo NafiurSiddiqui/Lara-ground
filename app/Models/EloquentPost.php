@@ -10,7 +10,7 @@ class EloquentPost extends Model
     use HasFactory;
 
     // protected $fillable = ['title', 'slug', 'excerpt','body', 'category_id'];
-    protected $guarded = [];
+    protected $guarded = []; //Mass assign anything
     protected $with = ['category', 'author']; // Now the request will be performed once. this solves n + 1
 
     //a post has category

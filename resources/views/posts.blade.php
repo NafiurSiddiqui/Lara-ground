@@ -9,9 +9,7 @@
                 </a> --}}
                    <a href="/posts/{{ $post->id }}">
                     {{ $post->title }}
-                </a>
-               
-             
+                </a>             
             </h1>
 
             <div>
