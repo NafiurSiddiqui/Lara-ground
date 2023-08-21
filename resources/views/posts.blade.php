@@ -16,11 +16,11 @@
                 {{-- we do this to skip the first post of the collection which is only for featured post --}}
 
                @foreach ($posts->skip(1) as $post)
-                   
+                {{-- This $loop variable is provided by Laravel. You can dd() here to see what you get from this --}}
                <x-post-card :post="$post"  class="{{ $loop->iteration < 3 ? 'col-span-3' : 'col-span-2' }}" />
                @endforeach
             </div>
-            
+
             @endif
          
 
