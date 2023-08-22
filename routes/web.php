@@ -56,7 +56,6 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 // })->where('post', '[A-z_\-]+'); //This is how you can put constraints otherwise the {slug} can be anything.
 
 
-
 //--------- REFACTORING
 
 //Route::get('/', function () {
@@ -68,15 +67,16 @@ Route::get('/', function () {
 })->name('home'); //we can name our router like this and perform actions based on this
 
 
+//----Generic route
+
 // Route::get('/posts', function () {
 
 //     return view('posts', [
 //     'posts' => Post::all()
 // ]);
-
 // });
 
-// ELOQUENT CLASS
+//-------  ELOQUENT CLASS
 // Route::get('/posts', function () {
 //     return view('posts', [
 //     'posts' => EloquentPost::all()
@@ -85,19 +85,37 @@ Route::get('/', function () {
 // });
 
 
-Route::get('/posts', function () {
-    //the following logs for how many times we requested for the sql query.
-    // DB::listen(function ($query) {
-    //     logger($query->sql);
-    // });
-    //*It is better to use Clockwork for this debugging. You have it installed in your edge.
+//Route::get('/posts', function () {
+//    //the following logs for how many times we requested for the sql query.
+//    // DB::listen(function ($query) {
+//    //     logger($query->sql);
+//    // });
+//    //*It is better to use Clockwork for this debugging. You have it installed in your edge.
+//    return view('posts', [
+//    // 'posts' => EloquentPost::latest()->with('category', 'author')->get()
+//    //The args is passed to solve n + 1 problems.
+//    'posts' => EloquentPost::latest()->get(),
+//    'categories'=> Category::all()
+//]);
+//
+//})->name('posts');
 
+
+Route::get('/posts', function () {
+    //if we tail the get() method here meaning " i am done building up the query, execute the SQL"
+    $post = EloquentPost::latest();
+
+    if (request('search')) {
+        //in this case look for the title that equals to the search result inside DB.
+//        👇 This is a SQL query - '%value%' => anything that has value in it.
+        $post
+            ->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('body', 'like', '%' . request('search') . '%');
+    }
     return view('posts', [
-    // 'posts' => EloquentPost::latest()->with('category', 'author')->get()
-    //The args is passed to solve n + 1 problems.
-    'posts' => EloquentPost::latest()->get(),
-    'categories'=> Category::all()
-]);
+        'posts' => $post->get(),
+        'categories' => Category::all()
+    ]);
 
 })->name('posts');
 
@@ -133,7 +151,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         //if doing this everywhere does not make sense we can decalre it once in our Model class. Checkout EloquentPost's $with prop
         'posts' => $category->posts,
         'currentCategory' => $category, //this is to get the current category from anywhere through the application.
-        'categories'=> Category::all()
+        'categories' => Category::all()
 
     ]);
 });
@@ -145,6 +163,6 @@ Route::get('/authors/{author:username}', function (User $author) {
     return view('posts', [
         // 'posts' => $author->posts->load(['category', 'author'])
         'posts' => $author->posts,
-    'categories'=> Category::all()
+        'categories' => Category::all()
     ]);
 });
