@@ -14,6 +14,26 @@ class EloquentPost extends Model
     protected $guarded = []; //Mass assign anything
     protected $with = ['category', 'author']; // Now the request will be performed once. this solves n + 1
 
+    // QUERY SCOPE - Look up readme
+    public function scopeFilter($query, array $filters): void //EloquentPost::newQuery()->filter()
+    {
+        //ONE WAY of building this query
+//        if ($filters['search'] ?? false) {
+//            //in this case look for the title that equals to the search result inside DB.
+//            // This is a SQL query - '%value%' => anything that has value in it.
+//            $query
+//                ->where('title', 'like', '%' . request('search') . '%')
+//                ->orWhere('body', 'like', '%' . request('search') . '%');
+//        }
+
+        //ANOTHER WAY
+        $query->when($filters['search'] ?? false, fn($query, $search)=>
+        $query
+            ->where('title', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%')
+        );
+    }
+
     //a post has category
     public function category(): BelongsTo
     {

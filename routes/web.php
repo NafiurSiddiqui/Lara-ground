@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EloquentPostController;
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\EloquentPost;
 use Illuminate\Support\Facades\Route;
@@ -100,27 +102,12 @@ Route::get('/', function () {
 //
 //})->name('posts');
 
-
-Route::get('/posts', function () {
-    //if we tail the get() method here meaning " i am done building up the query, execute the SQL"
-    $post = EloquentPost::latest();
-
-    if (request('search')) {
-        //in this case look for the title that equals to the search result inside DB.
-//        👇 This is a SQL query - '%value%' => anything that has value in it.
-        $post
-            ->where('title', 'like', '%' . request('search') . '%')
-            ->orWhere('body', 'like', '%' . request('search') . '%');
-    }
-    return view('posts', [
-        'posts' => $post->get(),
-        'categories' => Category::all()
-    ]);
-
-})->name('posts');
+//--------- ROUTE WITH CONTROLLER
+//--whenever this route is visited, the 'index' method will get triggered from the corresponding class
+Route::get('/posts',[EloquentPostController::class, 'index'])->name('posts');
 
 
-//SINGLE POST
+//--------SINGLE POST
 
 // Route::get('/posts/{post}', function ($slug) {
 
@@ -131,16 +118,23 @@ Route::get('/posts', function () {
 // });
 
 
-//for one post
-Route::get('/posts/{post:slug}', function (EloquentPost $post) {
-    //NOTE: {x} name has to be same as $x inside arg with a class passed this way.
+//-------------- SINGLE ELOQUENT CLASS
 
-    //find a post by its post and pass it to the view called "post"
-    return view('post', [
-        // 'post' => EloquentPost::findOrFail($id) //you can do this as well but remove EloquentPost type from the arg
-        'post' => $post
-    ]);
-});
+//Route::get('/posts/{post:slug}', function (EloquentPost $post) {
+//    //NOTE: {x} name has to be same as $x inside arg with a class passed this way.
+//
+//    //find a post by its post and pass it to the view called "post"
+//    return view('post', [
+//        // 'post' => EloquentPost::findOrFail($id) //you can do this as well but remove EloquentPost type from the arg
+//        'post' => $post
+//    ]);
+//});
+
+
+Route::get('/posts/{post:slug}', [EloquentPost::class, 'show']);
+
+
+
 
 
 Route::get('/categories/{category:slug}', function (Category $category) {

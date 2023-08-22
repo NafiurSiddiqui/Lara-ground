@@ -106,3 +106,11 @@
 # Dealing with static assets
 
 -   for the images. Put `/images/` instead of `./images`. Prolly this is due to how app visitors only get access to the `public` folder.
+
+# Controller 
+- when your routes file is getting a little messy with functions, you delegate that task to the corresponding controller.
+    in our case, we clean up the route and make separate controller.
+# Query Scope
+- Create a method, prefix the name with `scope`
+- you don't call the full name during the method call but just the after part (e.g - _scopeFilter_ => _filter_)
+- you get query as argument and you build your query from there.
