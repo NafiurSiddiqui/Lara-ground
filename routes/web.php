@@ -59,9 +59,13 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 //--------- REFACTORING
 
+//Route::get('/', function () {
+//    return view('home');
+//});
+
 Route::get('/', function () {
     return view('home');
-});
+})->name('home'); //we can name our router like this and perform actions based on this
 
 
 // Route::get('/posts', function () {
@@ -95,7 +99,7 @@ Route::get('/posts', function () {
     'categories'=> Category::all()
 ]);
 
-});
+})->name('posts');
 
 
 //SINGLE POST
