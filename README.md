@@ -96,6 +96,7 @@
 # Commands
 
 -   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).
+-  ` App\Models\EloquentPost::factory(30)->create();` this will create 30 posts at a time.
 
 # Eager Loading
 
