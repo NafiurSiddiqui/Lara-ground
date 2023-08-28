@@ -97,7 +97,7 @@
 
 -   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).
 -  ` App\Models\EloquentPost::factory(30)->create();` this will create 30 posts at a time.
-
+- `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
 # Eager Loading
 
 -   you define this once inside the model class as property. For instance checkout (EloquentPost)['/first-app/app/Models/EloquentPost.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.

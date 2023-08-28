@@ -153,11 +153,21 @@ Route::get('/posts/{post:slug}', [EloquentPostController::class, 'show']);
 
 //NOTE: by default if you do not provide an additional slug, it will look for the id
 
+//Route::get('/authors/{author:username}', function (User $author) {
+//
+//    return view('posts', [
+//        // 'posts' => $author->posts->load(['category', 'author'])
+//        'posts' => $author->posts,
+//        'categories' => Category::all()
+//    ]);
+//});
+
+//----------------- Duplication removed
+
 Route::get('/authors/{author:username}', function (User $author) {
 
     return view('posts', [
-        // 'posts' => $author->posts->load(['category', 'author'])
         'posts' => $author->posts,
-        'categories' => Category::all()
+//        categories removed to CategoryDropdown component inside VIEW
     ]);
 });

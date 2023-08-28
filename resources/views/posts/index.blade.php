@@ -1,32 +1,29 @@
-
 <x-layout>
 
-     @include('_posts-header')
+    @include('posts._header')
 
-        <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
         @if ($posts->count())
-                  
-          <x-post-grid :posts="$posts" />
 
-             @else
-                <p class="text-center border p-2 italic" >No posts yet. Check back later.</p>
-            @endif
-        </main>
+            <x-post-grid :posts="$posts"/>
+
+        @else
+            <p class="text-center border p-2 italic">No posts yet. Check back later.</p>
+        @endif
+    </main>
 </x-layout>
 
 
-
-    
-     {{-- @foreach ($posts as $post)
-        <article>
-            <h1> --}}
+{{-- @foreach ($posts as $post)
+   <article>
+       <h1> --}}
                 {{-- <a href="/posts/{{ $post->slug }}">
                     {{ $post->title }}
                 </a> --}}
                    {{-- <a href="/posts/{{ $post->id }}">
                     {{ $post->title }}
-                </a>             
+                </a>
             </h1>
 
             <div>
@@ -39,6 +36,6 @@
         </article>
         <hr>
     @endforeach --}}
-    
-    
-    
+
+
+
