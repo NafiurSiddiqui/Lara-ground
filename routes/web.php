@@ -134,9 +134,10 @@ Route::get('/posts',[EloquentPostController::class, 'index'])->name('posts');
 Route::get('/posts/{post:slug}', [EloquentPost::class, 'show']);
 
 
-
-
-
+/**
+ * We put the following route logic right into the ELoquentPost, where the POST
+ * is filtered with POST and CATEGORY
+ */
 Route::get('/categories/{category:slug}', function (Category $category) {
 
     return view('posts', [
@@ -148,7 +149,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         'categories' => Category::all()
 
     ]);
-});
+})->name('category');
 
 //NOTE: by default if you do not provide an additional slug, it will look for the id
 

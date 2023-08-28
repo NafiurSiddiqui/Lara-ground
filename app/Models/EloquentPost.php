@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method filter(mixed $request)
+ */
 class EloquentPost extends Model
 {
     use HasFactory;
@@ -15,9 +19,10 @@ class EloquentPost extends Model
     protected $with = ['category', 'author']; // Now the request will be performed once. this solves n + 1
 
     // QUERY SCOPE - Look up readme
+    //FILTER POST according to the SEARCH , CATEGORY
     public function scopeFilter($query, array $filters): void //EloquentPost::newQuery()->filter()
     {
-        //ONE WAY of building this query
+//        ONE WAY of building this query
 //        if ($filters['search'] ?? false) {
 //            //in this case look for the title that equals to the search result inside DB.
 //            // This is a SQL query - '%value%' => anything that has value in it.
@@ -26,12 +31,46 @@ class EloquentPost extends Model
 //                ->orWhere('body', 'like', '%' . request('search') . '%');
 //        }
 
-        //ANOTHER WAY
+        //ANOTHER WAY - For SEARCH
         $query->when($filters['search'] ?? false, fn($query, $search)=>
         $query
             ->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%')
         );
+
+        //FOR CATEGORY
+        /**
+         * SQL for the following would be =
+         * SELECT * EloquentPost
+         * WHERE EXISTS(
+         * SELECT * categories
+         * WHERE category.id = EloquentPost.id
+         * AND categoreis.slug =
+         */
+
+        //👆 TRANSLATING THE SQL 👇 # 1
+
+//        $query->when($filters['category']?? false, fn($query, $category ) =>
+//            $query->whereExists(
+//                fn($query)=>
+//                $query->from('categories')
+//                ->whereColumn('categories.id', 'eloquent_posts.category_id')
+//                    //👆 This is necessary since 2nd arg is TYPE sensitive.
+//                        //it requires integer but we are passing string
+//                        //in this case you wanna use `whereColumn`
+//                ->where('categories.slug', $category )
+//            )
+//        );
+        //👆 TRANSLATING THE SQL 👇 # 2
+        //"Yo, Post, Gimme the post where you have a category that matches the slug
+
+//        $query->when($filters['category']?? false, fn($query, $category)=>
+//            $query->whereHas('category', fn($query)=>
+//            $query->where('slug', $category )
+//            )
+//        );
+
+
     }
 
     //a post has category

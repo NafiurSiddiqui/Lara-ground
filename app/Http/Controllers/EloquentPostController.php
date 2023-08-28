@@ -18,7 +18,7 @@ class EloquentPostController extends Controller
             //we wrap the 'search' term in an array since our custom scopeFilter method expects
             //an array of filters. But, request['search'] returns string, hence we wrap it up with array.
 
-            'posts' => EloquentPost::latest()->filter(request(['search']))->get() ,
+            'posts' => EloquentPost::latest()->filter(request(['search', 'category']))->get() ,
             'categories' => Category::all()
         ]);
     }
