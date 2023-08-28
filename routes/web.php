@@ -138,18 +138,18 @@ Route::get('/posts/{post:slug}', [EloquentPostController::class, 'show']);
  * We put the following route logic right into the ELoquentPost, where the POST
  * is filtered with POST and CATEGORY
  */
-Route::get('/categories/{category:slug}', function (Category $category) {
-
-    return view('posts', [
-        // 'posts' => $category->posts->load(['category', 'author'])
-        //loading like this solves n + 1 problems. Without this we will again query for each post for each category, author, and so on.
-        //if doing this everywhere does not make sense we can decalre it once in our Model class. Checkout EloquentPost's $with prop
-        'posts' => $category->posts,
-        'currentCategory' => $category, //this is to get the current category from anywhere through the application.
-        'categories' => Category::all()
-
-    ]);
-})->name('category');
+//Route::get('/categories/{category:slug}', function (Category $category) {
+//
+//    return view('posts', [
+//        // 'posts' => $category->posts->load(['category', 'author'])
+//        //loading like this solves n + 1 problems. Without this we will again query for each post for each category, author, and so on.
+//        //if doing this everywhere does not make sense we can decalre it once in our Model class. Checkout EloquentPost's $with prop
+//        'posts' => $category->posts,
+//        'currentCategory' => $category, //this is to get the current category from anywhere through the application.
+//        'categories' => Category::all()
+//
+//    ]);
+//})->name('category');
 
 //NOTE: by default if you do not provide an additional slug, it will look for the id
 

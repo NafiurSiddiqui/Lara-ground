@@ -64,11 +64,11 @@ class EloquentPost extends Model
         //👆 TRANSLATING THE SQL 👇 # 2
         //"Yo, Post, Gimme the post where you have a category that matches the slug
 
-//        $query->when($filters['category']?? false, fn($query, $category)=>
-//            $query->whereHas('category', fn($query)=>
-//            $query->where('slug', $category )
-//            )
-//        );
+        $query->when($filters['category']?? false, fn($query, $category)=>
+            $query->whereHas('category', fn($query)=>
+            $query->where('slug', $category )
+            )
+        );
 
 
     }
