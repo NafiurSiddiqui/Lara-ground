@@ -131,7 +131,7 @@ Route::get('/posts',[EloquentPostController::class, 'index'])->name('posts');
 //});
 
 
-Route::get('/posts/{post:slug}', [EloquentPost::class, 'show']);
+Route::get('/posts/{post:slug}', [EloquentPostController::class, 'show']);
 
 
 /**
