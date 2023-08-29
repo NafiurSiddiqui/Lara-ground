@@ -41,6 +41,7 @@ class EloquentPost extends Model
         //ANOTHER WAY - This time it is grouped
         //e. g - WHERE ( 'title' LIKE '%search%' OR 'body' ... )
         //without this the category and search sync breaks.
+        //as a result you will get other posts with different category that contain the SEARCH term
         $query->when($filters['search'] ?? false, fn($query, $search)=>
         $query->where(fn($query) =>
         //NOW the following is grouped inside a parenthesis
