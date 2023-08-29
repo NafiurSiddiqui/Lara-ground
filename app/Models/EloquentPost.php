@@ -32,10 +32,21 @@ class EloquentPost extends Model
 //        }
 
         //ANOTHER WAY - For SEARCH
+//        $query->when($filters['search'] ?? false, fn($query, $search)=>
+//        $query
+//            ->where('title', 'like', '%' . $search . '%')
+//            ->orWhere('body', 'like', '%' . $search . '%')
+//        );
+
+        //ANOTHER WAY - This time it is grouped
+        //e. g - WHERE ( 'title' LIKE '%search%' OR 'body' ... )
+        //without this the category and search sync breaks.
         $query->when($filters['search'] ?? false, fn($query, $search)=>
-        $query
-            ->where('title', 'like', '%' . $search . '%')
+        $query->where(fn($query) =>
+        //NOW the following is grouped inside a parenthesis
+           $query ->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%')
+        )
         );
 
         //FOR CATEGORY
