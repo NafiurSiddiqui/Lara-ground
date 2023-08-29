@@ -14,12 +14,16 @@ class EloquentPostController extends Controller
 //        $post = EloquentPost::latest();
 
         //'posts.index - is just a common NAMESPACE Naming convention
+//        $filters = $request->only(['search', 'category', 'authors']);
+//
+//        $posts = EloquentPost::latest()->filter($filters)->get();
 
         return view('posts.index', [
             //we wrap the 'search' term in an array since our custom scopeFilter method expects
             //an array of filters. But, request['search'] returns string, hence we wrap it up with array.
 
-            'posts' => EloquentPost::latest()->filter(request(['search', 'category']))->get() ,
+            'posts' => EloquentPost::latest()->filter(request(['search', 'category', 'author']))->get() ,
+//            'posts' => $posts ,
 //            'categories' => Category::all(),
 //        👆 removed to its own component CategoryDropdown class inside VIEW for duplication
             //👇 This is how we passed a variable to highlight the active link

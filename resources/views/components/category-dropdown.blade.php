@@ -12,13 +12,14 @@
 
     {{-- Note we show two ways of making a link active --}}
 {{--    <x-dropdown-items href="/posts" :active="request()->routeIs('posts')">All</x-dropdown-items>--}}
-    <x-dropdown-items href="/posts" :active="request()->routeIs('posts') &&  empty(request()->query('category'))">All</x-dropdown-items>
+{{--    <x-dropdown-items href="/" :active="request()->routeIs('posts') &&  empty(request()->query('category'))">All</x-dropdown-items>--}}
+    <x-dropdown-items href="/" :active="!$currentCategory">All</x-dropdown-items>
 
 
     @foreach ($categories as $category)
         <x-dropdown-items
             {{--                        href="/categories/{{ $category->slug }}"--}}
-            href="/posts?category={{ $category->slug }}"
+            href="/?category={{ $category->slug }}"
             :active=" isset($currentCategory) && $currentCategory->id === $category->id "
         >
             {{ ucwords($category->name ) }}

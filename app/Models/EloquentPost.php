@@ -69,6 +69,16 @@ class EloquentPost extends Model
             $query->where('slug', $category )
             )
         );
+//        WHEN you need to query, ask, what is the relationshiop between this class
+        //and the thing you need to query for.
+        //in this case -
+        //give me post when the request is for AUTHOR, where post has author
+        //that matches up with the 'username'
+        $query->when($filters['author']?? false, fn($query, $author)=>
+            $query->whereHas('author', fn($query)=>
+            $query->where('username', $author)
+            )
+        );
 
 
     }

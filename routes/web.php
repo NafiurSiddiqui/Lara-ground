@@ -64,10 +64,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 //    return view('home');
 //});
 
-Route::get('/', function () {
-    return view('home');
-})->name('home'); //we can name our router like this and perform actions based on this
+//Route::get('/', function () {
+//    return view('home');
+//})->name('home'); //we can name our router like this and perform actions based on this
 
+Route::get('/', [EloquentPostController::class, 'index'])->name('home');
 
 //----Generic route
 
@@ -104,7 +105,7 @@ Route::get('/', function () {
 
 //--------- ROUTE WITH CONTROLLER
 //--whenever this route is visited, the 'index' method will get triggered from the corresponding class
-Route::get('/posts',[EloquentPostController::class, 'index'])->name('posts');
+//Route::get('/posts',[EloquentPostController::class, 'index'])->name('posts');
 
 
 //--------SINGLE POST
@@ -166,7 +167,7 @@ Route::get('/posts/{post:slug}', [EloquentPostController::class, 'show']);
 
 Route::get('/authors/{author:username}', function (User $author) {
 
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $author->posts,
 //        categories removed to CategoryDropdown component inside VIEW
     ]);
