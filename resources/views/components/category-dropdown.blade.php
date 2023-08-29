@@ -18,8 +18,15 @@
 
     @foreach ($categories as $category)
         <x-dropdown-items
-            {{--                        href="/categories/{{ $category->slug }}"--}}
-            href="/?category={{ $category->slug }}"
+            {{-- href="/categories/{{ $category->slug }}"--}}
+{{--                👇 This is a way of mergin an array of URL. Without this
+if we do &{{ request()->getQueryString() }}
+ we double up the category. it becomes, category=xxx&category=yyy&search=zzz.
+ http_build_query merge the query.
+ In this case, it will merge the query without an additional category=xxx
+--}}
+
+            href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
             :active=" isset($currentCategory) && $currentCategory->id === $category->id "
         >
             {{ ucwords($category->name ) }}

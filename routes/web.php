@@ -164,11 +164,11 @@ Route::get('/posts/{post:slug}', [EloquentPostController::class, 'show']);
 //});
 
 //----------------- Duplication removed
-
-Route::get('/authors/{author:username}', function (User $author) {
-
-    return view('posts.index', [
-        'posts' => $author->posts,
-//        categories removed to CategoryDropdown component inside VIEW
-    ]);
-});
+//
+//Route::get('/authors/{author:username}', function (User $author) {
+//
+//    return view('posts.index', [
+//        'posts' => $author->posts,
+////        categories removed to CategoryDropdown component inside VIEW
+//    ]);
+//});
