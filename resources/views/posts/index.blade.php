@@ -8,6 +8,7 @@
 
             <x-post-grid :posts="$posts"/>
 
+            {{-- comes from lara, for PAGINATION --}}
             {{ $posts->links() }}
 
         @else
