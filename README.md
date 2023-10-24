@@ -1,6 +1,8 @@
 # Running the app
 
+-   spin up the XAMPP ( for SQL server)
 -   `php artisan serve`
+-   `npm run dev` for auto refresh on change.
 
 # Directory Structure
 
@@ -96,8 +98,9 @@
 # Commands
 
 -   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).
--  ` App\Models\EloquentPost::factory(30)->create();` this will create 30 posts at a time.
-- `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
+-   ` App\Models\EloquentPost::factory(30)->create();` this will create 30 posts at a time.
+-   `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
+
 # Eager Loading
 
 -   you define this once inside the model class as property. For instance checkout (EloquentPost)['/first-app/app/Models/EloquentPost.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.
@@ -107,10 +110,13 @@
 
 -   for the images. Put `/images/` instead of `./images`. Prolly this is due to how app visitors only get access to the `public` folder.
 
-# Controller 
-- when your routes file is getting a little messy with functions, you delegate that task to the corresponding controller.
+# Controller
+
+-   when your routes file is getting a little messy with functions, you delegate that task to the corresponding controller.
     in our case, we clean up the route and make separate controller.
+
 # Query Scope
-- Create a method, prefix the name with `scope`
-- you don't call the full name during the method call but just the after part (e.g - _scopeFilter_ => _filter_)
-- you get query as argument and you build your query from there.
+
+-   Create a method, prefix the name with `scope`
+-   you don't call the full name during the method call but just the after part (e.g - _scopeFilter_ => _filter_)
+-   you get query as argument and you build your query from there.
