@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EloquentPost>
  */
-class EloquentPostFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,8 +21,8 @@ class EloquentPostFactory extends Factory
         return [
             "title" => $this->faker->sentence,
             "slug" => $this->faker->slug,
-            "excerpt" =>'<p>'. implode('<p></p>',  $this->faker->paragraphs(2)). '</p>',
-            "body" =>'<p>'. implode('<p></p>',  $this->faker->paragraphs(6)). '</p>',
+            "excerpt" =>'<p>'. implode('<p></p>', $this->faker->paragraphs(2)). '</p>',
+            "body" =>'<p>'. implode('<p></p>', $this->faker->paragraphs(6)). '</p>',
             //Builds the relationship 👇
             "user_id" => User::factory(), //creates user and grabs the id
             "category_id" => Category::factory(), //creates category and grabs the id

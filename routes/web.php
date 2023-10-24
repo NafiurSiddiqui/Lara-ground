@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\EloquentPostController;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
-use App\Models\EloquentPost;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\User;
@@ -68,7 +66,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 //    return view('home');
 //})->name('home'); //we can name our router like this and perform actions based on this
 
-Route::get('/', [EloquentPostController::class, 'index'])->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 //----Generic route
 
@@ -105,7 +103,7 @@ Route::get('/', [EloquentPostController::class, 'index'])->name('home');
 
 //--------- ROUTE WITH CONTROLLER
 //--whenever this route is visited, the 'index' method will get triggered from the corresponding class
-//Route::get('/posts',[EloquentPostController::class, 'index'])->name('posts');
+//Route::get('/posts',[PostController::class, 'index'])->name('posts');
 
 
 //--------SINGLE POST
@@ -132,13 +130,15 @@ Route::get('/', [EloquentPostController::class, 'index'])->name('home');
 //});
 
 
-Route::get('/posts/{post:slug}', [EloquentPostController::class, 'show']);
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 
 /**
  * We put the following route logic right into the ELoquentPost, where the POST
  * is filtered with POST and CATEGORY
  */
+
+
 //Route::get('/categories/{category:slug}', function (Category $category) {
 //
 //    return view('posts', [

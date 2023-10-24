@@ -93,17 +93,17 @@
 
 -   `Factory()` creates and saves new data to db.
 -   A user factory has a corresponding model. Every eloquent model you create will have the trait,factory ,`hasFactory`. This allows you to call the factory and quickly create and persist a class data to the db. The attributes will be declared inside the class.
--   Wherever you need to use the factory, you need to make sure the corresponding factory class exist. For instance, if a `EloquentPost` class does not have a corresponding factory class, you create one by runnng `php artisan make:factory`.
+-   Wherever you need to use the factory, you need to make sure the corresponding factory class exist. For instance, if a `Post` class does not have a corresponding factory class, you create one by runnng `php artisan make:factory`.
 
 # Commands
 
 -   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).
--   ` App\Models\EloquentPost::factory(30)->create();` this will create 30 posts at a time.
+-   ` App\Models\Post::factory(30)->create();` this will create 30 posts at a time.
 -   `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
 
 # Eager Loading
 
--   you define this once inside the model class as property. For instance checkout (EloquentPost)['/first-app/app/Models/EloquentPost.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.
+-   you define this once inside the model class as property. For instance checkout (Post)['/first-app/app/Models/Post.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.
 -   **NOTE** That if you ever needed to disable autoloading or eager loading you can do so by `Class::without(..args)->first()`. This will load the post without the specified relationship. So, if we had passed '_author_', '_category_' this would load the post without the author and _category_.
 
 # Dealing with static assets
