@@ -29,12 +29,7 @@ class PostController extends Controller
         // $posts = Post::latest()->filter($filters)->get();
 
         return view('posts.index', [
-            //we wrap the 'search' term in an array since our custom scopeFilter method expects
-            //an array of filters. But, request['search'] returns string, hence we wrap it up with array.
-            //----------- GENERAL FETCHING WITH FILTER
-
-            // 'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->get() ,
-
+            
             //--------------- FETCHING w/ FILTER and PAGINATION
             'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(3) ,
 
