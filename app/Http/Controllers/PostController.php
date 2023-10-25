@@ -36,7 +36,16 @@ class PostController extends Controller
             // 'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->get() ,
 
             //--------------- FETCHING w/ FILTER and PAGINATION
-            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(3) ,
+            // 'posts' => Post::latest()->filter(
+            //     request(['search', 'category', 'author'])
+            // )
+            //     ->paginate(6)
+            //--------------- FETCHING w/ FILTER,PAGINATION and Query URL
+            'posts' => Post::latest()->filter(
+                request(['search', 'category', 'author'])
+            )
+                ->paginate(6)->withQueryString()
+                
 
 
         //            'posts' => $posts ,

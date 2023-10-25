@@ -12,7 +12,7 @@ class Category extends Model
     public function posts()
     {
         //    always remember the relationship. Ask yourself, does this category belongs to one post? No. A category has many posts. think of it like that.
-        return $this->hasMany(EloquentPost::class);
+        return $this->hasMany(Post::class);
     
     }
 
