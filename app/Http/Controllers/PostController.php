@@ -12,34 +12,13 @@ class PostController extends Controller
     {
 
 
-        //------- DUMPS the raw JSON result of the following result
-        // return  Post::latest()->filter(
-        //     request(['search', 'category', 'author'])
-        // )->get();
-        
-
-
-        //if we tail the get() method here meaning " I am done building up the query, execute the SQL"
-        // $post = Post::latest();
-
-        
-        //    $filters = $request->only(['search', 'category', 'authors']);
-        //'posts.index - is just a common NAMESPACE Naming convention
-
-        // $posts = Post::latest()->filter($filters)->get();
-
         return view('posts.index', [
             
-            //--------------- FETCHING w/ FILTER and PAGINATION
+          
             'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(3) ,
 
 
-        //            'posts' => $posts ,
-        //            'categories' => Category::all(),
-        //        👆 removed to its own component CategoryDropdown class inside VIEW for duplication
-            //👇 This is how we passed a variable to highlight the active link
-        //            'currentCategory'=> Category::firstWhere('slug', request('category'))
-        //        REMOVED to CategoryDropdown since that is where it belongs
+    
         ]);
     }
 
