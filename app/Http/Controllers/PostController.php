@@ -24,9 +24,9 @@ class PostController extends Controller
 
         
         //    $filters = $request->only(['search', 'category', 'authors']);
-        //'posts.index - is just a common NAMESPACE Naming convention
-
         // $posts = Post::latest()->filter($filters)->get();
+
+        //'posts.index - is just a common NAMESPACE Naming convention, meading go to src->views->posts->index file. Note that we create the filename according to the methods.
 
         return view('posts.index', [
             //we wrap the 'search' term in an array since our custom scopeFilter method expects
