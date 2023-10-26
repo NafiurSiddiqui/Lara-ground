@@ -102,6 +102,17 @@
 -   `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
 -   `php artisan make:controller <name>` - makes a controleller with that name.
 
+# Blade Components
+
+-   Any methods can return a view
+-   All the view has their name a PATH and filename associated with their corresponding methods they are called in. for instance -
+
+    ```
+    return view('posts.index') //called from the PostController
+    ```
+
+-   All blade file must have `<x-NameOfTheComponent>`. e.g - a common layout `<x-layout`.
+
 # Eager Loading
 
 -   you define this once inside the model class as property. For instance checkout (Post)['/first-app/app/Models/Post.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.

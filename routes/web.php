@@ -6,4 +6,7 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-Route::get('register', [RegisterController::class, 'create']);
+
+//both of these are required
+Route::get('register', [RegisterController::class, 'create']); //hits the register route
+Route::post('register', [RegisterController::class, 'store']); //controls the POST request
