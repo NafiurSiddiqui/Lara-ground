@@ -100,6 +100,7 @@
 -   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).
 -   ` App\Models\Post::factory(30)->create();` this will create 30 posts at a time.
 -   `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
+-   `php artisan make:controller <name>` - makes a controleller with that name.
 
 # Eager Loading
 
