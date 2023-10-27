@@ -113,6 +113,11 @@
 
 -   All blade file must have `<x-NameOfTheComponent>`. e.g - a common layout `<x-layout`.
 
+# FORM SUBMISSION
+
+-   you need both `get` and `post` request when you want to hit a page and read the post values.
+-   `@csrf` without this `post` won't work.
+
 # Eager Loading
 
 -   you define this once inside the model class as property. For instance checkout (Post)['/first-app/app/Models/Post.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.
