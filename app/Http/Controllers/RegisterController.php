@@ -19,16 +19,18 @@ class RegisterController extends Controller
     {
         // var_dump(request()->all()); //TO SEE THE VALUES SUBMITTED
 
-        request()->validate([
+        $attributes = request()->validate([
             'name' => ['required', 'min:3','max:255'],
-            'username'=>['required','unique:users,username', 'max:255'],
-            'email'=>['required','email','unique:users,email', 'max:255' ],
-            'password'=>['required','confirmed', 'min:7','max:255']
+            'username'=>['required', 'max:255'],
+            'email'=>['required','email','max:255' ],
+            'password'=>['required', 'min:7','max:255']
         ]);
 
         // dd('request submitted successfully');
 
-        User::create();
+        User::create($attributes); //in case of success, the values returned from the request validation wil be used to create the user.
+
+        return redirect('/');
     }
 
 

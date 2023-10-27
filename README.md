@@ -141,3 +141,7 @@
 # Styling the default components
 
 -   For instance, if you want to style `pagination` components, you need to publish the `vendor` package you wanna have control over.So, for our pagination, those components live inside the `vendor` dir. we need to do `php artisan vendor:publish`. From there you will have to choose the package you want to publish. for us, it is `laravel-pagination`. Simply refer to the number and hit `enter`. The pagination view will be transferred to the project `views` and refer to this new files. You can also use other pagination library from there as well but you will have to refer to their scripts. For instance, if we want to use `bootstrap` paginator, then we will have to include the _bootstrap_url_ in our head component. then we will have to go to `AppServiceProvider` and add the `paginator::useBootStrap()` inside the `boot` method.
+
+# Things to dig about
+
+-   [Mutator and Accessor](https://laravel.com/docs/10.x/eloquent-mutators#attribute-casting)
