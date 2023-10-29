@@ -50,8 +50,8 @@
 
 # Creating a default DB
 
--   create a DB of your choice. e.g - in mySql etc.
--   update `.env` config file. e.g -
+1.  create a DB of your choice. e.g - in mySql etc.
+2.  update `.env` config file. e.g -
 
 ```
 DB_CONNECTION=mysql
@@ -65,11 +65,34 @@ DB_PASSWORD=
 
 This is the most basics, you can do more if you need.
 
--   `php artisan migrate` will generate a default db.
+3. With Laravel you do not have to create columns, rows manually but with `migration` class inside `database/migrations/*` folder.Each `migration` class by default have a `up` and `down` method. To create your db you need to run -
+
+    - `php artisan make:migration create_<Name>_table`. This will create the file with default methods. Here you define your db schema for this table.
+
+4. Run `php artisan migrate` to generate the db in your DB.
+
 -   Any additional changes, like adding columns, you can go to [database]('./database/migrations) and update changes.
 -   afterwards, run `... migrate:fresh` to update the columns in your db.
 
-# Creating User ( DEVELOPMENT )
+## Factory
+
+-   Factory allows us to create fake data that we can insert into our database and to test things out.
+    To create factory:
+-   `php artisan make:factory <NameOfModel> --model=NameOfModel`
+-   `Factory()` creates new data. You can then save this data with `seed`( more on that below).
+-   A user factory has a corresponding model. Every eloquent model you create will have the trait,factory ,`hasFactory`. This allows you to call the factory and quickly create and persist a class data to the db. The attributes will be declared inside the class.
+-   Wherever you need to use the factory, you need to make sure the corresponding factory class exist. For instance, if a `Post` class does not have a corresponding factory class, you create one by runnng `php artisan make:factory`.
+
+## Manual Seeding
+
+-   you will find the seeder inside `/database/seeders`.
+-   seeding fills up the database (for instance, the `factory` generated data, saves them to the db).
+-   `php artisan db:seed` seeds the db.
+-   `.. migrate:refresh` will clear out the data from the table.
+-   Next time you need to update DB run `php artisan migrate:fresh --seed` to drop and repopulate the tables.
+-   see how the `truncate()` works inside the `database/seeders`.
+
+## Creating User ( DEVELOPMENT )
 
 -   run `php artisan tinker`
 -   `$user = new App\Models\User` to create an user instance.
@@ -80,7 +103,7 @@ This is the most basics, you can do more if you need.
 -   `User::all()` returns all users info.
 -   `User::pluck(name<string>)` will return only the column mentioned.
 
-# Creating additional tables and so on
+## Creating additional tables and so on
 
 -   `php artisan make:migration` - helps you with creating additonal tables
 -   `php artisan -help make:migration`- shows you the list of commands available to you.
@@ -95,20 +118,6 @@ This is the most basics, you can do more if you need.
 # shortcut to migrate and model
 
 -   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with `php artisan -help`
-
-## Manual Seeding
-
--   you will find the seeder inside `/database/seeders`.
--   seeding fills up the database
--   `php artisan db:seed` seeds the db.
--   Next time you need to update DB run `php artisan migrate:fresh --seed` to drop and repopulate the tables.
--   see how `truncate()` inside the.
-
-## Factory
-
--   `Factory()` creates and saves new data to db.
--   A user factory has a corresponding model. Every eloquent model you create will have the trait,factory ,`hasFactory`. This allows you to call the factory and quickly create and persist a class data to the db. The attributes will be declared inside the class.
--   Wherever you need to use the factory, you need to make sure the corresponding factory class exist. For instance, if a `Post` class does not have a corresponding factory class, you create one by runnng `php artisan make:factory`.
 
 # Commands
 
