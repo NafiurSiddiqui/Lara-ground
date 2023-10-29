@@ -26,6 +26,11 @@
 
 -   Run `php artisan tinker` to have php code running inside your terminal.
 
+# Controller
+
+-   when your routes file is getting a little messy with functions, you delegate that task to the corresponding controller.
+    in our case, we clean up the route and make separate controller.
+
 # DB config and files
 
 -   Create your usual sql db and run `php artisan migrate` to hook up the DB to laravel.
@@ -34,7 +39,9 @@
 -   `... migrate:fresh`: Will drop the tables and re-create the tables. **NEVER** use it in production.
 -   Always change the `APP_ENV` to `production` before production.
 
-# ELOQUENT
+# ELOQUENT ( Database ORM)
+
+<hr>
 
 -   This is Laravel's ORM - ( Object Relational Mapper)
 -   is a fancy term for how Laravel's way of interacting with your DB table.
@@ -42,6 +49,21 @@
 -   If you have user table it will correspond to the User Model and instances of user will go to what is known as `active pattern` ( records of USER object inside the DB).
 
 # Creating a default DB
+
+-   create a DB of your choice. e.g - in mySql etc.
+-   update `.env` config file. e.g -
+
+```
+DB_CONNECTION=mysql
+DB_HOST=<127.0.0.1 | yourdomain.com>
+DB_PORT=3306
+DB_DATABASE=<name of the db>
+DB_USERNAME=
+DB_PASSWORD=
+
+```
+
+This is the most basics, you can do more if you need.
 
 -   `php artisan migrate` will generate a default db.
 -   Any additional changes, like adding columns, you can go to [database]('./database/migrations) and update changes.
@@ -73,13 +95,6 @@
 # shortcut to migrate and model
 
 -   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with `php artisan -help`
-
-# Clockwork and N+1 problem
-
--   `\Illuminate\Support\Facades\DB:listen($callback)` - you can listen to any incoming queries.
--   you need to pass the name of the request you are looking for in order to stop sending request for each and every name inside a loop. This is what N + 1 problem refers to.
-
-# DB Seeding
 
 ## Manual Seeding
 
@@ -118,19 +133,23 @@
 -   you need both `get` and `post` request when you want to hit a page and read the post values.
 -   `@csrf` without this `post` won't work.
 
-# Eager Loading
+# Optimization
+
+<hr>
+
+1. ## Clockwork and N+1 problem
+
+-   `\Illuminate\Support\Facades\DB:listen($callback)` - you can listen to any incoming queries.
+-   you need to pass the name of the request you are looking for in order to stop sending request for each and every name inside a loop. This is what N + 1 problem refers to.
+
+2. ## Eager Loading
 
 -   you define this once inside the model class as property. For instance checkout (Post)['/first-app/app/Models/Post.php]'s `$with` property. with this you solve **n+1** problem as well as you DRY. Wihtout this you would have had to manually load posts with the `with` method.
 -   **NOTE** That if you ever needed to disable autoloading or eager loading you can do so by `Class::without(..args)->first()`. This will load the post without the specified relationship. So, if we had passed '_author_', '_category_' this would load the post without the author and _category_.
 
-# Dealing with static assets
+# Static assets
 
 -   for the images. Put `/images/` instead of `./images`. Prolly this is due to how app visitors only get access to the `public` folder.
-
-# Controller
-
--   when your routes file is getting a little messy with functions, you delegate that task to the corresponding controller.
-    in our case, we clean up the route and make separate controller.
 
 # Query Scope
 
