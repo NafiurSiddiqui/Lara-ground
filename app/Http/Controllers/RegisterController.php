@@ -16,27 +16,46 @@ class RegisterController extends Controller
     }
 
     //deals with FORM value posted here
+    // public function store()
+    // {
+    //     // var_dump(request()->all()); //TO SEE THE VALUES SUBMITTED
+
+    //     $attributes = request()->validate([
+    //         'name' => ['required', 'min:3','max:255'],
+    //         // 'username'=>['required','min:3', 'max:255',Rule::unique('users','username') ],
+    //         'username'=>['required','min:3', 'max:255','unique:users' ],
+           
+    //         'email'=>['required','email','max:255', 'unique:users' ],
+    //         'password'=>['required', 'min:7','max:255']
+    //     ]);
+
+    //     // dd('request submitted successfully');
+
+    //     User::create($attributes); //in case of success, the values returned from the request validation wil be used to create the user.
+
+    //     //show a success message toast
+    //     // session()->flash('success', 'Your account is successfully created');
+
+    //     return redirect('/')->with('success', 'Your account is successfully created');
+    // }
+
     public function store()
     {
-        // var_dump(request()->all()); //TO SEE THE VALUES SUBMITTED
-
+       
         $attributes = request()->validate([
             'name' => ['required', 'min:3','max:255'],
-            // 'username'=>['required','min:3', 'max:255',Rule::unique('users','username') ],
             'username'=>['required','min:3', 'max:255','unique:users' ],
-           
             'email'=>['required','email','max:255', 'unique:users' ],
             'password'=>['required', 'min:7','max:255']
         ]);
 
-        // dd('request submitted successfully');
+        User::create($attributes); //validate data passed down as args.
 
-        User::create($attributes); //in case of success, the values returned from the request validation wil be used to create the user.
-
-        //showing a success message toast
-        session()->flash('success', 'Your account is successfully created');
-
-        return redirect('/');
+        //show a success message toast
+        return redirect('/')->with(
+            'success',
+            'Your account is successfully created'
+        );
     }
 
   
