@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -21,8 +22,10 @@ class RegisterController extends Controller
 
         $attributes = request()->validate([
             'name' => ['required', 'min:3','max:255'],
-            'username'=>['required','min:3', 'max:255','unique:users,username' ],
-            'email'=>['required','email','max:255' ],
+            // 'username'=>['required','min:3', 'max:255',Rule::unique('users','username') ],
+            'username'=>['required','min:3', 'max:255','unique:users' ],
+           
+            'email'=>['required','email','max:255', 'unique:users' ],
             'password'=>['required', 'min:7','max:255']
         ]);
 
@@ -45,4 +48,9 @@ class RegisterController extends Controller
 
 /**
  * unique:users,username' : meaning, look at the table called 'users', and look for the column 'username' and see if the input value already exist.Without this the app will break into SQL integrity issue.
+ *
+ * You can do either importing Rule or straight inside a string
+ *Rule::unique('table', 'column') come in handy in cases of updating profile. for instance, here : https://laravel.com/docs/10.x/validation#rule-unique
+
+ * WITH LARAVEL 10- we can just simply mention the table to lookup for.
  */
