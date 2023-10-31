@@ -39,6 +39,8 @@ class RegisterController extends Controller
         return redirect('/');
     }
 
+  
+    
 
 }
 
@@ -60,5 +62,6 @@ class RegisterController extends Controller
 
 /**
  * SUCCESS TOAST -
+ * this session message is show after the page refresh not right away.
  we access this toast from our layout component
  */
