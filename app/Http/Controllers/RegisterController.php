@@ -33,6 +33,9 @@ class RegisterController extends Controller
 
         User::create($attributes); //in case of success, the values returned from the request validation wil be used to create the user.
 
+        //showing a success message toast
+        session()->flash('success', 'Your account is successfully created');
+
         return redirect('/');
     }
 
@@ -53,4 +56,9 @@ class RegisterController extends Controller
  *Rule::unique('table', 'column') come in handy in cases of updating profile. for instance, here : https://laravel.com/docs/10.x/validation#rule-unique
 
  * WITH LARAVEL 10- we can just simply mention the table to lookup for.
+ */
+
+/**
+ * SUCCESS TOAST -
+ we access this toast from our layout component
  */
