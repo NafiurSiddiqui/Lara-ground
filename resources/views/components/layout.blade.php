@@ -16,15 +16,31 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/" class="text-amber-800 font-bold text-2xl border-2 border-amber-900 px-3 py-1 rounded-md">
-                    {{-- <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16"> --}}
+                    
                     T Y P Y
                 </a>
             </div>
 
             <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase mr-3">Home Page</a>
-                <a href="/posts" class="text-xs font-bold uppercase">Blogs</a>
+                
+                {{-- @guest
+                <a href="/register" class="text-xs font-bold uppercase mr-3">Register</a>    
+                @endguest --}}
 
+                @auth
+                <span class="text-sm">Welcome, {{ auth()->user()->name }}!</span>
+                <form action="/logout" method="post" class="inline">
+                    @csrf
+                    <button type="submit" class="ml-2 text-xs text-blue-500 hover:bg-blue-500 hover:text-white font-semibold border-2 py-2 px-4 rounded-sm">Log Out</button>
+                    </form>
+
+                @else
+                <a href="/login" class="text-xs font-bold uppercase ml-2">Register</a>
+                @endauth
+
+
+               
+               
                 <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>

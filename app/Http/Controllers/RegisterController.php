@@ -49,7 +49,11 @@ class RegisterController extends Controller
             'password'=>['required', 'min:7','max:255']
         ]);
 
-        User::create($attributes); //validate data passed down as args.
+        $user = User::create($attributes); //validate data passed down as args.
+
+        //log user in
+        auth()->login($user);
+
 
         //show a success message toast
         return redirect('/')->with(
