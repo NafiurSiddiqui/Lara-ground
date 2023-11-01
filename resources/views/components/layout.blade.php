@@ -35,7 +35,8 @@
                     </form>
 
                 @else
-                <a href="/login" class="text-xs font-bold uppercase ml-2">Register</a>
+                <a href="/register" class="text-xs font-bold uppercase ml-2">Register</a>
+                <a href="/login" class="text-xs font-bold uppercase ml-2">Login</a>
                 @endauth
 
 

@@ -1,10 +1,10 @@
 <x-layout>
 
     <section class="px-6 py-8">
-        <main class="max-w-lg mx-auto">
+        <main class="max-w-lg mx-auto bg-gray-100 border-2 px-4 py-2 mt-10">
 
-            <h1 class="text-center font-bold">Register</h1>
-            <form action="/register" method="POST" class="border-2 px-4 py-8 mt-10 ">
+            <h1 class="text-center font-bold my-4">Register</h1>
+            <form action="/register" method="POST" class="">
                 @csrf
                 <div class="mb-4 ">
                     <label for="username" class="block mb-2 text-sm font-medium text-gray-600">Username</label>
@@ -50,8 +50,8 @@
 
                 </div>
 
-         </main>
-       </form>
+            </form>
+        </main>
     </section>
 </x-layout>
 
