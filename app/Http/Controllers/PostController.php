@@ -11,7 +11,6 @@ class PostController extends Controller
     protected function index()
     {
 
-<<<<<<< HEAD
 
         return view('posts.index', [
             
@@ -20,12 +19,6 @@ class PostController extends Controller
 
 
     
-=======
-        return view('posts.index', [
-  
-            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(3)->withQueryString() ,
-
->>>>>>> main
         ]);
     }
 
