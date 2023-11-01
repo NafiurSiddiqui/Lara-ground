@@ -100,9 +100,17 @@ This is the most basics, you can do more if you need.
 
     -   After migrating the new table, run `... make:model <name>` in this case `Post` and stick with singularity class name. Not `Posts`.
 
-    ### Shortcut to migrate and model
+    ## Migration
+
+    -   migration is like creating tables for the database.
+    -   `php artisan make:migration create_table_name_table`
+    -   open it up and add fields.
+    -   Anytime you make any changes to these files, you need to `... migrate:rollback` and then `.. migrate` to push the new changes to the DB.
+
+    ### Shortcut to Migration and Model
 
     -   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with `php artisan -help`
+    -   for instance, `php artisan make:model Comment -mfc` will create a model for `comments` section, m = migrate, f = factory, c = controller. NEAT!
 
 # DEVELOPMENT
 
