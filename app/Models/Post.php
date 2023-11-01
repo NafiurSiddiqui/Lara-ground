@@ -13,11 +13,20 @@ class Post extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
   
     protected $guarded = []; //Mass assign anything
     protected $with = ['category', 'author'];
     //FILTER POST according to the SEARCH , CATEGORY
     public function scopeFilter($query, array $filters): void //
+=======
+
+    protected $guarded = []; //Mass assign anything
+    protected $with = ['category', 'author']; // Now the request will be performed once. this solves n + 1
+
+    //FILTER POST according to the SEARCH , CATEGORY
+    public function scopeFilter($query, array $filters): void
+>>>>>>> main
     {
        
         $query->when(
@@ -25,13 +34,18 @@ class Post extends Model
             fn ($query, $search) =>
         $query->where(
             fn ($query) =>
-        //NOW the following is grouped inside a parenthesis
+        
            $query ->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%')
         )
         );
 
+<<<<<<< HEAD
        
+=======
+        
+
+>>>>>>> main
         $query->when(
             $filters['category']?? false,
             fn ($query, $category) =>
@@ -41,7 +55,11 @@ class Post extends Model
             $query->where('slug', $category)
             )
         );
+<<<<<<< HEAD
        
+=======
+        
+>>>>>>> main
         $query->when(
             $filters['author']?? false,
             fn ($query, $author) =>
@@ -58,6 +76,7 @@ class Post extends Model
     //a post has category
     public function category(): BelongsTo
     {
+<<<<<<< HEAD
 
         
         return $this->belongsTo(Category::class);
@@ -65,13 +84,21 @@ class Post extends Model
     }
 
     
+=======
+        return $this->belongsTo(Category::class);
+    }
+
+   
+>>>>>>> main
 
     public function author(): BelongsTo
     {
-
         return $this->belongsTo(User::class, 'user_id');
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> main
     }
 
 
