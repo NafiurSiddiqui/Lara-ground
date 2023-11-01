@@ -104,24 +104,26 @@ This is the most basics, you can do more if you need.
 
     -   `php artisan make:model <Name> <flag>` so in our scneario it will be `php artisan make:model Post -m`. this will migrate and create a corresponding model. There are more flags you can find with `php artisan -help`
 
-    ### Creating User ( DEVELOPMENT )
+# DEVELOPMENT
 
-    -   run `php artisan tinker`
-    -   `$user = new App\Models\User` to create an user instance.
-    -   `$user->name = <Name>`, `$user->email = <email>`, `$user->password = bcrypt(<pass>)` to fill out the necessary user fields.
-    -   `$user->save()` to save it to the DB.
-    -   run `$user` and you shall see the user information.
-    -   `User::find(id<int>)` or `User::findOrFail(id<int>)` with id number, name etc, will show you the details of the user.
-    -   `User::all()` returns all users info.
-    -   `User::pluck(name<string>)` will return only the column mentioned.
+## Creating Dummy User
 
-    ## Creating additional tables and so on
+-   run `php artisan tinker`
+-   `$user = new App\Models\User` to create an user instance.
+-   `$user->name = <Name>`, `$user->email = <email>`, `$user->password = bcrypt(<pass>)` to fill out the necessary user fields.
+-   `$user->save()` to save it to the DB.
+-   run `$user` and you shall see the user information.
+-   `User::find(id<int>)` or `User::findOrFail(id<int>)` with id number, name etc, will show you the details of the user.
+-   `User::all()` returns all users info.
+-   `User::pluck(name<string>)` will return only the column mentioned.
 
-    -   `php artisan make:migration` - helps you with creating additonal tables
-    -   `php artisan -help make:migration`- shows you the list of commands available to you.
-    -   General rule of thumb, make sensible name for what the migration does. e.g - `php artisan make:migration create_posts_table`. SO far looks like the name of the table gotta be plural?
-    -   Each time you make a migration, generates files right inside the [database](./database/migrations/) dir. Look for the table you just created and update any necessary changes.
-    -   if you have updated make sure to `migrate:rollback` and migrate again unless make sure to run `.. migrate` to successfully update the DB.
+## Creating additional tables and so on
+
+-   `php artisan make:migration` - helps you with creating additonal tables
+-   `php artisan -help make:migration`- shows you the list of commands available to you.
+-   General rule of thumb, make sensible name for what the migration does. e.g - `php artisan make:migration create_posts_table`. SO far looks like the name of the table gotta be plural?
+-   Each time you make a migration, generates files right inside the [database](./database/migrations/) dir. Look for the table you just created and update any necessary changes.
+-   if you have updated make sure to `migrate:rollback` and migrate again unless make sure to run `.. migrate` to successfully update the DB.
 
 # Commands
 
