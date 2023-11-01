@@ -1,3 +1,7 @@
+# AUTH
+
+-   It is suggested to use `laravel breeze` from the very beginning during the installation of laravel.
+
 # Running the app
 
 -   spin up the XAMPP ( for SQL server)
@@ -143,8 +147,6 @@ This is the most basics, you can do more if you need.
 -   `@csrf` without this `post` won't work.
 
 # Optimization
-
-<hr>
 
 1. ## Clockwork and N+1 problem
 

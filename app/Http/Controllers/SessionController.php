@@ -31,26 +31,28 @@ class SessionController extends Controller
         /**
          * @attempt - takes care of both sceneario of our pseudo-code
          */
-        if(auth()->attempt($attributes)) {
-            //session fixation [CONCEPT of an attack]
-            session()->regenerate();
-            //redirect with a flash message
-            return redirect('/')->with('success', 'Welcome back!');
+        if(!auth()->attempt($attributes)) {
+            //auth fails
+
+            // return back()
+            // ->withInput()
+            // ->withErrors([
+            //     'email'=>'Your provided credentials could not be verified.'
+            // ]);
+
+            //or we can do this on fail
+
+            throw ValidationException::withMessages([
+                'email'=>'Your provided credentials could not be verified.'
+            ]);
+
         }
+        //session fixation [CONCEPT of an attack]
+        session()->regenerate();
+        //redirect with a flash message
+        return redirect('/')->with('success', 'Welcome back!');
 
-        //auth fails
-
-        // return back()
-        // ->withInput()
-        // ->withErrors([
-        //     'email'=>'Your provided credentials could not be verified.'
-        // ]);
-
-        //or we can do this on fail
-
-        throw ValidationException::withMessages([
-            'email'=>'Your provided credentials could not be verified.'
-        ]);
+       
 
     }
 

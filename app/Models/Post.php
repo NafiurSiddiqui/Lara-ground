@@ -25,8 +25,7 @@ class Post extends Model
             fn ($query, $search) =>
         $query->where(
             fn ($query) =>
-        
-           $query ->where('title', 'like', '%' . $search . '%')
+         $query ->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%')
         )
         );
