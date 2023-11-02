@@ -63,7 +63,7 @@
                         </header>
                         {{-- div with a textarea --}}
                         <div class="mt-4 ">
-                            <textarea name="body" cols="30" rows="10" placeholder="Quick, think of something!"
+                            <textarea name="body" rows="5" placeholder="Quick, think of something!"
                                 class="w-full p-2 text-xs focus:outline-none focus:ring rounded-sm"></textarea>
                         </div>
 
