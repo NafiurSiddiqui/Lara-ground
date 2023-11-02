@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method filter(mixed $request)
@@ -57,10 +58,7 @@ class Post extends Model
     //a post has category
     public function category(): BelongsTo
     {
-
-        
         return $this->belongsTo(Category::class);
-        
     }
 
     
@@ -69,6 +67,13 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
 
+    }
+
+
+    //A post has many comments
+    public function comment(): HasMany
+    {
+        return $this->hasMany(Comment::class);
 
     }
 

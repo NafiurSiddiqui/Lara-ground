@@ -133,6 +133,22 @@ This is the most basics, you can do more if you need.
 -   Each time you make a migration, generates files right inside the [database](./database/migrations/) dir. Look for the table you just created and update any necessary changes.
 -   if you have updated make sure to `migrate:rollback` and migrate again unless make sure to run `.. migrate` to successfully update the DB.
 
+# Building relationships
+
+-   hasOne()
+-   belongsTo()
+-   hasMany()
+-   belongsToMany()
+
+## What is building relationships between models?
+
+Building a relationship between two or more models allows us to establish connections, dependencies, and associations between them. This enables us to perform complex queries
+Building relationships between models allows us to establish a connection or association between two different data entities in our application.
+
+_Example:_
+A blog post can have many comments, a comment belongs to one blog post.
+In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method in Comments model.
+
 # Commands
 
 -   `<path>\Class::with(<name>)->first()` gets the firest post with <name> (e.g - username).
