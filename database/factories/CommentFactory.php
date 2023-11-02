@@ -21,7 +21,7 @@ class CommentFactory extends Factory
         return [
            'post_id' => Post::factory(),
            'user_id' => User::factory(),
-           'body'=>$this->faker->paragraph(10),
+           'body'=>$this->faker->paragraph(),
         ];
     }
 }
