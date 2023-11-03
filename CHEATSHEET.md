@@ -17,3 +17,7 @@
 15. Monitor and Maintain
 
 These steps provide a high-level overview of the Laravel development process.
+
+# Validation tips
+
+-   Always put up a guard on server first and then client side.
