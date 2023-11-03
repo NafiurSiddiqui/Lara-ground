@@ -221,3 +221,20 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
     ```
 
 -   Add on to your API based on their doc.
+
+# ServiceProviders
+
+-   They are classes that boot up your entire app when needed.
+-   This class will be called automatically if it exists.
+
+## Service Containers
+
+-   It's like a global object that has all of our dependencies.
+-   We use it in order to have single instance across application.
+-   Example usage is for database connection or caching mechanism.
+-   Think of something like a toychest, a box. You can add things to, you can fetch from it as well.
+
+## Contracts
+
+-   A contract defines what methods should be available within a certain interface.
+-   In other words, they define how objects interact with each other.

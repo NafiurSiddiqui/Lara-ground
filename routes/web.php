@@ -38,6 +38,6 @@ Route::get('/ping', function () {
     ]);
 
     $response = $mailchimp->ping->get();
-    ddd($response);
+    // ddd($response);
 
 });
