@@ -201,3 +201,23 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
 # Things to dig about
 
 -   [Mutator and Accessor](https://laravel.com/docs/10.x/eloquent-mutators#attribute-casting)
+
+# Integrating APIs
+
+-   Grab the API key, assign the key to an appropriate variable name.
+    e.g -
+    ```
+    MAILCHIMP_API_KEY=<key>
+    ```
+-   Let Laravel know about this by going to `config > services` and write down the service there.
+-   TIPS: 💡 You can access to this by `config('services.*')` notation. e.g -
+
+    ```
+    php artisan tinker
+
+    config('services.mailchimp.key')
+
+    //SPITS OUT THE KEY
+    ```
+
+-   Add on to your API based on their doc.
