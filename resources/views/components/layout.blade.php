@@ -61,13 +61,15 @@
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="#" id="newsletter" class="lg:flex text-sm">
+                    <form method="POST" action="/newsletter" id="newsletter" class="lg:flex text-sm">
+                        @csrf
+
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
                                 <img src="/images/mailbox-icon.svg" alt="mailbox letter">
                             </label>
 
-                            <input id="email" type="text" placeholder="Your email address"
+                            <input id="email" name="email" type="text" placeholder="Your email address"
                                 class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
 
@@ -81,6 +83,8 @@
         </footer>
     </section>
     {{-- Toast Notification --}}
+
+
     @if (session()->has('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
             class="bg-green-500 text-white fixed right-3 bottom-3 p-4">

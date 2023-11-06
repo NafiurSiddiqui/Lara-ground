@@ -27,8 +27,13 @@ Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth')
 
 
 // mailchimp test
+Route::post('/newsletter', function () {
 
-Route::get('/ping', function () {
+    //validate input field
+
+    request()->validate([
+        'email' => ['required','email']
+    ]);
    
     $mailchimp = new \MailchimpMarketing\ApiClient();
 
@@ -37,7 +42,17 @@ Route::get('/ping', function () {
         'server' => 'us20'
     ]);
 
-    $response = $mailchimp->ping->get();
-    // ddd($response);
+    // $response = $mailchimp->ping->get();
+    // $response = $mailchimp->lists->getAllLists();
+    // $response = $mailchimp->lists->getListMembersInfo('c20f296763');
+    $response = $mailchimp->lists->addListMember('c20f296763', [
+        'email_address' => request('email'),
+        'status' => 'subscribed'
+    ]);
+    // dd($response);
+
+    // $response = $mailchimp->addListMember()
+
+    return redirect('/')->with('success', 'You are now signed up for our newsletter!');
 
 });
