@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\PostCommentsController;
+use App\Services\Newsletter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\NewsletterController;
+use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\PostCommentsController;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
@@ -27,32 +30,35 @@ Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth')
 
 
 // mailchimp test
-Route::post('/newsletter', function () {
 
-    //validate input field
+// Route::post('/newsletter', function (Newsletter $newsletter) {
 
-    request()->validate([
-        'email' => ['required','email']
-    ]);
-   
-    $mailchimp = new \MailchimpMarketing\ApiClient();
+//     //validate input field
 
-    $mailchimp->setConfig([
-        'apiKey' => config('services.mailchimp.key'),
-        'server' => 'us20'
-    ]);
+//     request()->validate([
+//         'email' => ['required','email']
+//     ]);
 
-    // $response = $mailchimp->ping->get();
-    // $response = $mailchimp->lists->getAllLists();
-    // $response = $mailchimp->lists->getListMembersInfo('c20f296763');
-    $response = $mailchimp->lists->addListMember('c20f296763', [
-        'email_address' => request('email'),
-        'status' => 'subscribed'
-    ]);
-    // dd($response);
+//     try {
 
-    // $response = $mailchimp->addListMember()
+//         //we took the mailchimp config to its own class
 
-    return redirect('/')->with('success', 'You are now signed up for our newsletter!');
+//         //we instantiate the class here to use the service
 
-});
+//         // $newsletter = new Newsletter();
+
+//         $newsletter->subscribe(request('email'));
+
+//     } catch (\Exception $e) {
+
+//         throw ValidationException::withMessages(
+//             ['email' => 'Try a different email'],
+//         );
+//     }
+
+//     return redirect('/')->with('success', 'You are now signed up for our newsletter!');
+
+// });
+
+// STAGE2
+Route::post('/newsletter', NewsletterController::class); //single action based class

@@ -238,3 +238,7 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
 
 -   A contract defines what methods should be available within a certain interface.
 -   In other words, they define how objects interact with each other.
+
+# Gloassaries
+
+`Automatic Resolution`: Lara automatically resolves a class provided as an argument.
