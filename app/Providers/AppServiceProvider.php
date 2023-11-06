@@ -16,55 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // return the value 'bar' of the key 'foo'.
         //this will make this value availble all over the app.
-        $this->app->bind('foo', function () {
-            return 'bar';
-        });
-
-
-        // STAGE-1: BINDING a value to the service containers
-
-
-        // $this->app->bind(Newsletter::class, function () {
-        //     return new Newsletter(
-        //         new ApiClient,
-        //         'bar'
-        //     );
-        // });
-
-        //STAGE - 2: Binding the newsletter class here ( Just for the purpose of learning)
-
-        // $this->app->bind(Newsletter::class, function () {
-           
-        //     $client = new ApiClient();
-
-        //     $client->setConfig([
-        //         'apiKey' => config('services.mailchimp.key'),
-        //         'server' => 'us20'
-        //     ]);
-
-
-        //     return new Newsletter($client);
+        // $this->app->bind('foo', function () {
+        //     return 'bar';
         // });
 
 
-        // STAGE - 3 : Binding Mailchimp Specific newsletter ( At this point we changed the name to MailchimpNewsletter)
-
-        // $this->app->bind(MailchimpNewsletter::class, function () {
-           
-        //     $client = new ApiClient();
-
-        //     $client->setConfig([
-        //         'apiKey' => config('services.mailchimp.key'),
-        //         'server' => 'us20'
-        //     ]);
-
-
-        //     return new Newsletter($client);
-        // });
-
-
-        //STAGE - 4
-        //Here we define the interface and tell laravel that we don't care about the specific class, just give me the class that implements the contracts ( methods defined inside interface)
         $this->app->bind(Newsletter::class, function () {
            
             $client = new ApiClient();
