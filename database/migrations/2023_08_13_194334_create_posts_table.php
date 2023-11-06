@@ -15,9 +15,10 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id');
             $table->string('title');
+            $table->text('slug')->unique();
             $table->text('excerpt');
             $table->text('body');
-            $table->text('slug')->unique();
+            $table->string('thumbnail')->nullable(); //We don't store image itself but the path where the image resides.
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
 

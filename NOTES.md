@@ -25,6 +25,9 @@
 -   Cache
 -   Architecture
 -   Blade
+-   Authentication
+-   Admin only
+-   Filesystem
 
 # Php Tinker
 
@@ -44,8 +47,6 @@
 -   Always change the `APP_ENV` to `production` before production.
 
 # ELOQUENT ( Database ORM)
-
-<hr>
 
 -   This is Laravel's ORM - ( Object Relational Mapper)
 -   is a fancy term for how Laravel's way of interacting with your DB table.
@@ -71,7 +72,7 @@ This is the most basics, you can do more if you need.
 
 3. With Laravel you do not have to create columns, rows manually but with `migration` class inside `database/migrations/*` folder.Each `migration` class by default have a `up` and `down` method. To create your db you need to run -
 
-    - `php artisan make:migration create_<Name>_table`. This will create the file with default methods. Here you define your db schema for this table.
+    - `php artisan make:migration create_<Name>_table`. This will create the file with default methods. Here you define your db schema for this table.The files will be inside `database/migrations`. here you define structure your table.
 
 4. Run `php artisan migrate` to generate the db in your DB.
 
@@ -102,7 +103,8 @@ This is the most basics, you can do more if you need.
 
     ## Migration
 
-    -   migration is like creating tables for the database.
+    -   A migration is like creating a new table or changing an existing one.
+    -   You can also delete data from a table using this.
     -   `php artisan make:migration create_table_name_table`
     -   open it up and add fields.
     -   Anytime you make any changes to these files, you need to `... migrate:rollback` and then `.. migrate` to push the new changes to the DB.
@@ -132,6 +134,7 @@ This is the most basics, you can do more if you need.
 -   General rule of thumb, make sensible name for what the migration does. e.g - `php artisan make:migration create_posts_table`. SO far looks like the name of the table gotta be plural?
 -   Each time you make a migration, generates files right inside the [database](./database/migrations/) dir. Look for the table you just created and update any necessary changes.
 -   if you have updated make sure to `migrate:rollback` and migrate again unless make sure to run `.. migrate` to successfully update the DB.
+-   or you can `migrate:fresh --seed` to drop and fillup the records.
 
 # Building relationships
 
@@ -242,3 +245,21 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
 # Gloassaries
 
 `Automatic Resolution`: Lara automatically resolves a class provided as an argument.
+
+# Middlewares
+
+-   Middleware are used to perform some action before and after executing the controller method.
+-   It is like a layers of onion. When a request come in to your app,
+    the request goes through a series of layers, known as `Request Lifecycle` until it goes to the core of your app.
+-   All the `App\Http\Middleware` files that are there, act as these layers.
+-   `$next($request)`: is when one of the layer verifies a request and looks authentic to its logic, it instructs to pass on to the next layer of the Request Lifecycle.
+-   I have used it mostly for _auth_
+-   you can generate your own middleware by running `.. make:middlware <name>`. name should be conscise like `adminOnly` and so on.
+-   we must register the new middleware inside our `App\Http\Kernel`, inside the Route middleware.
+
+## Types of Middleware
+
+1. Global middleware (applied to every route)
+2. Route middleware (only applied to specific routes)
+3. Group middleware (apply to groups of routes)
+4. Terminable middleware (perform finalization tasks).

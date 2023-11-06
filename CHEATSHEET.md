@@ -20,4 +20,5 @@ These steps provide a high-level overview of the Laravel development process.
 
 # Validation tips
 
+-   validate any input
 -   Always put up a guard on server first and then client side.

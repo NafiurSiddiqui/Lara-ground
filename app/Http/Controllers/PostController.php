@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -26,6 +28,46 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post
         ]);
+    }
+
+    public function create()
+    {
+
+        
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+        // dd(request()->all());
+
+        // //Playing around with filesystem
+        // // dd(request()->file('thumbnail'));
+        // //let's store the image insid the directory called thumbnails
+        // $path = request()->file('thumbnail')->store('thumbnails');
+        // return 'Done ' . $path;
+        
+        //validate input
+
+        $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('posts', 'slug')],
+            'excerpt' => 'required',
+            'body' => 'required',
+            'thumbnail' => ['required', 'image'],
+            'category_id'=>['required', Rule::exists('categories', 'id')],
+        ]);
+
+        //associate user_id to this post
+
+        $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');//NOTE we store the filepath not the actual file itself
+
+        //store
+        Post::create($attributes);
+
+        //return
+        return redirect('/');
     }
 
 
