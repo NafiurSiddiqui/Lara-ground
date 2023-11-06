@@ -29,36 +29,4 @@ Route::post('login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 
-// mailchimp test
-
-// Route::post('/newsletter', function (Newsletter $newsletter) {
-
-//     //validate input field
-
-//     request()->validate([
-//         'email' => ['required','email']
-//     ]);
-
-//     try {
-
-//         //we took the mailchimp config to its own class
-
-//         //we instantiate the class here to use the service
-
-//         // $newsletter = new Newsletter();
-
-//         $newsletter->subscribe(request('email'));
-
-//     } catch (\Exception $e) {
-
-//         throw ValidationException::withMessages(
-//             ['email' => 'Try a different email'],
-//         );
-//     }
-
-//     return redirect('/')->with('success', 'You are now signed up for our newsletter!');
-
-// });
-
-// STAGE2
 Route::post('/newsletter', NewsletterController::class); //single action based class
