@@ -10,6 +10,8 @@ class NewsletterController extends Controller
 {
     public function __invoke(Newsletter $newsletter)
     {
+
+        // dd($newsletter);
         //validate input field
 
         request()->validate([
