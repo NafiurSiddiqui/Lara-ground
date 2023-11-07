@@ -7,15 +7,14 @@
                     height="40">
                 <h3 class="font-bold text-lg ml-3">Add a comment</h3>
             </header>
-            {{-- div with a textarea --}}
-            <div class="mt-4 ">
-                <textarea name="body" rows="5" placeholder="Quick, think of something!"
-                    class="w-full p-2 text-xs focus:outline-none focus:ring rounded-sm" required></textarea>
-            </div>
+
+            <x-form.textarea name="body" />
 
             <div class="flex justify-end">
-                <button type="submit"
-                    class="bg-blue-500 px-10 py-2 rounded-sm text-white mt-4 uppercase hover:bg-blue-600">Post</button>
+
+                <x-form.button>
+                    Post
+                </x-form.button>
             </div>
         </form>
         @error('body')

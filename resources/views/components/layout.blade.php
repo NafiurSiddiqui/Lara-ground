@@ -13,7 +13,7 @@
 
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
-        <nav class="md:flex md:justify-between md:items-center">
+        <nav class=" md:flex md:justify-between md:items-center">
             <div>
                 <a href="/"
                     class="text-amber-800 font-bold text-2xl border-2 border-amber-900 px-3 py-1 rounded-md">
@@ -22,7 +22,7 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
+            <div class="mt-8 md:mt-0 flex justify-between space-y-2 items-center flex-wrap">
 
                 {{-- @guest
                 <a href="/register" class="text-xs font-bold uppercase mr-3">Register</a>    
@@ -36,6 +36,7 @@
                             class="ml-2 text-xs text-blue-500 hover:bg-blue-500 hover:text-white font-semibold border-2 py-2 px-4 rounded-sm">Log
                             Out</button>
                     </form>
+                    <a href="admin/posts/create" class="text-xs font-bold uppercase ml-2">Create A post</a>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase ml-2">Register</a>
                     <a href="/login" class="text-xs font-bold uppercase ml-2">Login</a>
