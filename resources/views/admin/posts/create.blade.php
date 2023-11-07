@@ -1,8 +1,5 @@
 <x-layout>
-    <h1 class="font-bold text-xl my-8 text-center">
-        Publish A New Post
-    </h1>
-    <x-panel class="max-w-sm mx-auto mt-10">
+    <x-setting heading="Publish New Post">
         <form action="/admin/posts" method="post" enctype="multipart/form-data">
             @csrf
 
@@ -25,7 +22,9 @@
             @enderror
 
         </form>
-    </x-panel>
+    </x-setting>
+
+
 </x-layout>
 
 {{-- 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\PostCommentsController;
@@ -31,5 +32,6 @@ Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth')
 
 Route::post('/newsletter', NewsletterController::class); //single action based class
 
+Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
 Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
 Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');

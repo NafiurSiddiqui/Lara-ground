@@ -8,7 +8,7 @@
                 <h3 class="font-bold text-lg ml-3">Add a comment</h3>
             </header>
 
-            <x-form.textarea name="body" />
+            <x-form.textarea />
 
             <div class="flex justify-end">
 

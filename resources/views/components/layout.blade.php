@@ -22,23 +22,37 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0 flex justify-between space-y-2 items-center flex-wrap">
+            <div class="mt-8 md:mt-0 flex justify-between  items-center flex-wrap">
 
                 {{-- @guest
                 <a href="/register" class="text-xs font-bold uppercase mr-3">Register</a>    
                 @endguest --}}
 
                 @auth
-                    <span class="text-sm">Welcome, {{ auth()->user()->name }}!</span>
-                    <form action="/logout" method="post" class="inline">
-                        @csrf
-                        <button type="submit"
-                            class="ml-2 text-xs text-blue-500 hover:bg-blue-500 hover:text-white font-semibold border-2 py-2 px-4 rounded-sm">Log
-                            Out</button>
-                    </form>
-                    <a href="admin/posts/create" class="text-xs font-bold uppercase ml-2">Create A post</a>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="text-sm hover:text-blue-600 hover:font-semibold">Welcome,
+                                {{ auth()->user()->name }}!</button>
+                        </x-slot>
+
+                        <x-dropdown-items href="/admin/posts" :active="request()->is('admin/posts')">
+                            All Posts
+                        </x-dropdown-items>
+                        <x-dropdown-items href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+                            Create new post
+                        </x-dropdown-items>
+                        <x-dropdown-items href="#" x-data="{}"
+                            @click.prevent="document.querySelector('#logout-form').submit()">
+                            Logout
+                        </x-dropdown-items>
+
+                        <form id="logout-form" action="/logout" method="post" class="inline">
+                            @csrf
+
+                        </form>
+                    </x-dropdown>
                 @else
-                    <a href="/register" class="text-xs font-bold uppercase ml-2">Register</a>
+                    <a href="/register" class="text-xs font-bold uppercase ml-2 text-center">Register</a>
                     <a href="/login" class="text-xs font-bold uppercase ml-2">Login</a>
                 @endauth
 
