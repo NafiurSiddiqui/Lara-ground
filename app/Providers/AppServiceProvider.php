@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Services\MailchimpNewsletter;
 use App\Services\Newsletter;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use MailchimpMarketing\ApiClient;
 
@@ -44,6 +46,12 @@ class AppServiceProvider extends ServiceProvider
     {
         //Unrestricts mass assignment
         //Model::unguarded()
+
+        Gate::define('admin', function (User $user) {
+            
+            return $user->username === 'Eddie'; //TO DEFINE AN ADMIN
+
+        });
     }
 }
 
@@ -57,4 +65,9 @@ class AppServiceProvider extends ServiceProvider
  * This is how you store any values inside the SERVICE CONTAINER. In most cases, it will be a KEY=>VALUE pair.
  *
  * In our app's case, we now have the value for the $foo inside our App\Services\Newsletter construct class. Now Lara will be able to resolve this.
+ *
+ *
+ * ## GATE
+ *
+ * Is a way of telling what people to let in or not.
  */

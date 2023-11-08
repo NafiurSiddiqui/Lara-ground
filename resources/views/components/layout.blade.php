@@ -35,12 +35,27 @@
                                 {{ auth()->user()->name }}!</button>
                         </x-slot>
 
-                        <x-dropdown-items href="/admin/posts" :active="request()->is('admin/posts')">
-                            Dashboard
-                        </x-dropdown-items>
-                        <x-dropdown-items href="/admin/posts/create" :active="request()->is('admin/posts/create')">
-                            Create new post
-                        </x-dropdown-items>
+                        {{-- @if (auth()->user()->can('admin'))
+                            <x-dropdown-items href="/admin/posts" :active="request()->is('admin/posts')">
+                                Dashboard
+                            </x-dropdown-items>
+                            <x-dropdown-items href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+                                Create new post
+                            </x-dropdown-items>
+                        @endif --}}
+
+                        {{-- ANOTHER WAY : Blade shortcut --}}
+
+                        @can('admin')
+                            <x-dropdown-items href="/admin/posts" :active="request()->is('admin/posts')">
+                                Dashboard
+                            </x-dropdown-items>
+                            <x-dropdown-items href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+                                Create new post
+                            </x-dropdown-items>
+                        @endcan
+
+
                         <x-dropdown-items href="#" x-data="{}"
                             @click.prevent="document.querySelector('#logout-form').submit()">
                             Logout

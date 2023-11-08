@@ -264,3 +264,9 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
 2. Route middleware (only applied to specific routes)
 3. Group middleware (apply to groups of routes)
 4. Terminable middleware (perform finalization tasks).
+
+# http\Kernel
+
+-   Kernel is responsible for handling incoming requests and returning responses.
+-   The kernel handles HTTP requests by calling the appropriate handlers.
+-   You can define your 'admin' once inside the `AppServiceProvider` and you can essentially use the `can:<name>` on your routes.
