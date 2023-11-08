@@ -1,4 +1,4 @@
-@props(['name'])
+@props(['name', 'post'])
 
 <x-form.field>
     <x-form.label name="{{ $name }}" />
@@ -10,7 +10,8 @@
 
     <select name="category_id" id="category_id" class="border">
         @foreach ($categories as $category)
-            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+            <option value="{{ $category->id }}"
+                {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
                 {{ ucwords($category->name) }}</option>
         @endforeach
     </select>

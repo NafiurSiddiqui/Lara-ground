@@ -169,6 +169,7 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
     ```
 
 -   All blade file must have `<x-NameOfTheComponent>`. e.g - a common layout `<x-layout`.
+-   Note, if you wanna passdown a prop that is not HTML attributes, you need prefix it with a colon. for instance, take a look at the [edit](./resources/views/admin/posts/edit.blade.php) component. Here you passdown the `$post` into the `dropdown` component. You do that by specifying `:post="$post"`.
 
 # FORM SUBMISSION
 

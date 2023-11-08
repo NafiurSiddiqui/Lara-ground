@@ -33,3 +33,8 @@ if you have roles based authentication, you don't necessarily create roles and r
 -   But we can not reference to this path from our application. For instance, if we want to show the picture on UI. In order to make it happen, we need to, build a bridge, make a `storage:link` link between the `public/images` folder and `storage/app` folder.
 
 We do this by running, the commmand the link the file uploaded and stored inside the `storage` will be avialable to the `public` dir.
+
+# Editing and Deleting the post
+
+-   ` @method('PATCH')` : Is actually used to tell Lara that even though it is a POST request, we want to PATCH the infos updated.
+-   ` @method('DELETE')` : You must add a method to delete as well on a POST action.

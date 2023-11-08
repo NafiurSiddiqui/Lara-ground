@@ -4,11 +4,11 @@
             @csrf
 
 
-            <x-form.input name="title" />
-            <x-form.input name="slug" />
-            <x-form.textarea name="excerpt" />
-            <x-form.input name="thumbnail" type="file" />
-            <x-form.textarea name="body" />
+            <x-form.input name="title" required />
+            <x-form.input name="slug" required />
+            <x-form.textarea name="excerpt" required />
+            <x-form.input name="thumbnail" type="file" required />
+            <x-form.textarea name="body"required />
             <x-form.dropdown name="category" />
 
 

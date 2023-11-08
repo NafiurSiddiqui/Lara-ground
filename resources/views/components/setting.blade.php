@@ -6,9 +6,9 @@
         {{ $heading }}
     </h1>
 
-    <div class="flex">
+    <div class="md:flex space-y-4 md:space-y-0 ">
 
-        <aside class="w-48">
+        <aside class="w-48 md:flex-shrink-0">
             <h4 class="font-semibold mb-4">Links</h4>
             <ul>
                 <li>
@@ -24,7 +24,7 @@
 
 
         <main class="flex-1">
-            <x-panel class="max-w-sm mx-auto mt-10">
+            <x-panel>
                 {{ $slot }}
             </x-panel>
 
