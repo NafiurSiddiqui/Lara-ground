@@ -158,6 +158,7 @@ In this case we would use `hasMany()` in BlogPost model and `belongsTo()` method
 -   ` App\Models\Post::factory(30)->create();` this will create 30 posts at a time.
 -   `php artisan make:component <ComponentName>` - will create a `blade` file with a corresponding `view` file.
 -   `php artisan make:controller <name>` - makes a controleller with that name.
+-   `php artisan route:list` will show you all the routes.
 
 # Blade Components
 
