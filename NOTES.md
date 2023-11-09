@@ -1,6 +1,6 @@
 # AUTH
 
--   It is suggested to use `laravel breeze` from the very beginning during the installation of laravel.
+-   It is suggested to use `laravel breeze` from the very beginning during the installation of laravel. ( ONLY if you want the the AUTH taken care of)
 
 # Running the app
 
