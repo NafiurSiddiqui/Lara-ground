@@ -109,6 +109,7 @@
 # Dealing with static assets
 
 -   for the images. Put `/images/` instead of `./images`. Prolly this is due to how app visitors only get access to the `public` folder.
+-   Just a test line.
 
 # Controller
 
