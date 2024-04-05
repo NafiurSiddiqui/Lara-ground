@@ -72,13 +72,12 @@ This is the most basics, you can do more if you need.
 
 3.  ## Migration
 
--   A migration is like creating a new table or changing an existing one.
--   You can also delete data from a table using this.
--   `php artisan make:migration create_table_name_table`
+
+- With `migration` creates the blueprint for the table inside `database/migrations/*` folder.Each `migration` class by default have a `up` and `down` method.
+- To create your db you need to run  `php artisan make:migration create_table_name_table`
+- `php artisan make:migration create_<Name>_table`. This will create the file with default methods. Here you define your db schema for this table.The files will be inside `database/migrations`. here you define structure your table.
 -   open it up and add fields.
 -   Anytime you make any changes to these files, you need to `... migrate:rollback` and then `.. migrate` to push the new changes to the DB.
--   With Laravel you do not have to create columns, rows manually but with `migration` creates the blueprint for the table inside `database/migrations/*` folder.Each `migration` class by default have a `up` and `down` method. To create your db you need to run -
-    - `php artisan make:migration create_<Name>_table`. This will create the file with default methods. Here you define your db schema for this table.The files will be inside `database/migrations`. here you define structure your table.
 
 5. Run `php artisan migrate` to generate the db in your DB.
 
