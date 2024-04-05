@@ -70,7 +70,7 @@
 
 This is the most basics, you can do more if you need.
 
-3. With Laravel you do not have to create columns, rows manually but with `migration` class inside `database/migrations/*` folder.Each `migration` class by default have a `up` and `down` method. To create your db you need to run -
+3. With Laravel you do not have to create columns, rows manually but with `migration` creates the blueprint for the table inside `database/migrations/*` folder.Each `migration` class by default have a `up` and `down` method. To create your db you need to run -
 
     - `php artisan make:migration create_<Name>_table`. This will create the file with default methods. Here you define your db schema for this table.The files will be inside `database/migrations`. here you define structure your table.
 
