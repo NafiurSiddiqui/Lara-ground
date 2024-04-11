@@ -101,8 +101,7 @@ This is the most basics, you can do more if you need.
     -   Everytime you make changes, you ran `migreate:fresh` which drops all the table and you need to open up tinker, and create all of the table from scratch, like `App\Models\User::factory()->create(100)` and for the rests of the table.
     -   Seeder create those factory generated db for you.
     -   `php artisan db:seed` seeds the db.
-    -   `.. migrate:refresh` will clear out the data from the table.
-    -   Next time you need to update DB run `php artisan migrate:fresh --seed` to drop and repopulate the tables.
+    -   Do `migrate:fresh --seed` to drop the table and seed the db with factory generated data.
     -   see how the `truncate()` works inside the `database/seeders`.
 
 
