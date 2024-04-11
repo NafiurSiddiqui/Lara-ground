@@ -95,21 +95,15 @@ This is the most basics, you can do more if you need.
     -   A user factory has a corresponding model. Every eloquent model you create will have the trait,factory ,`hasFactory`. This allows you to call the factory and quickly create and persist a class data to the db. The attributes will be declared inside the class.
     -   Wherever you need to use the factory, you need to make sure the corresponding factory class exist. For instance, if a `Post` class does not have a corresponding factory class, you create one by runnng `php artisan make:factory`.
 
-    ## Manual Seeding
+    ## Database Seeding
 
-    -   you will find the seeder inside `/database/seeders`.
+    -   You will find the seeder inside `/database/seeders`.
+    -   Everytime you make changes, you ran `migreate:fresh` which drops all the table and you need to open up tinker, and create all of the table from scratch, like `App\Models\User::factory()->create(100)` and for the rests of the table.
     -   seeding fills up the database (for instance, the `factory` generated data, saves them to the db).
     -   `php artisan db:seed` seeds the db.
     -   `.. migrate:refresh` will clear out the data from the table.
     -   Next time you need to update DB run `php artisan migrate:fresh --seed` to drop and repopulate the tables.
     -   see how the `truncate()` works inside the `database/seeders`.
-
-    ## Creating Model
-
-    -   After migrating the new table, run `... make:model <name>` in this case `Post` and stick with singularity class name. Not `Posts`.
-
-  
-
 
 
     
